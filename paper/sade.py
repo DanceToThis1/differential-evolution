@@ -104,6 +104,7 @@ def sade(fobj, bounds, popsize=20, its=1000, goal=0):
             else:
                 failure_memory[i % lp, strategy_num] += 1
         if np.fabs(min(fitness) - goal) < 1e-6:
+            print(i)
             break
         yield best, fitness[best_idx]
 
@@ -139,3 +140,32 @@ def current_to_rand_1_bin(a, b, c, popj, mut, min_b, max_b):
     k = np.random.rand()
     trial = np.clip(popj + k * (a - popj) + mut * (b - c), min_b, max_b)
     return trial
+
+
+def rastrigin(x):
+    return sum(x ** 2 - 10 * np.cos(2 * np.pi * x) + 10)
+
+
+# it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
+# print(it[-1])
+
+
+def rastrigin_sade_test():
+    result = []
+    for num in range(20):
+        it = list(sade(rastrigin, [(-5.12, 5.12)] * 10, popsize=100, its=3000))
+        result.append(it[-1][-1])
+        pass
+    mean_result = np.mean(result)
+    std_result = np.std(result)
+    success_num = 0
+    for i in result:
+        if np.fabs(i - 0) < 1e-5:
+            success_num += 1
+            pass
+        pass
+    return mean_result, std_result, success_num
+
+
+mean_result, std_result, success_num = rastrigin_sade_test()
+print(mean_result, std_result, success_num)
