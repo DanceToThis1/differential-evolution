@@ -37,7 +37,10 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.5):
                 x_r2 = a[idx_x_r2 - len(population) + 2]
             mut = cauchy.rvs(loc=mean_mut, scale=0.1)
             while mut < 0 or mut > 1:
-                mut = cauchy.rvs(loc=mean_mut, scale=0.1)
+                if mut < 0:
+                    mut = cauchy.rvs(loc=mean_mut, scale=0.1)
+                else:
+                    mut = 1
             mutant = np.clip(population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2), min_b, max_b)
             cr = random.gauss(mean_cr, 0.1)
             cross_points = np.random.rand(dimensions) < cr
