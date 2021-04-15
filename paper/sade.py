@@ -72,22 +72,22 @@ def sade(fobj, bounds, popsize=20, its=1000, goal=0):
                 strategy_num = 0
                 cr_median_0 = statistics.median(cr_memory[0])
                 cr_0 = random.gauss(cr_median_0, 0.1)
-                while (cr < 0) or (cr > 1):
+                while (cr_0 < 0) or (cr_0 > 1):
                     cr_0 = random.gauss(cr_median_0, 0.1)
                 trial = rand_1_bin(a, b, c, mut, min_b, max_b, popj, dimensions, cr_0)
             elif rand_sp < sum(sp[:2]):
                 strategy_num = 1
                 cr_median_1 = statistics.median(cr_memory[1])
                 cr_1 = random.gauss(cr_median_1, 0.1)
-                while (cr < 0) or (cr > 1):
-                    cr_0 = random.gauss(cr_median_1, 0.1)
+                while (cr_1 < 0) or (cr_1 > 1):
+                    cr_1 = random.gauss(cr_median_1, 0.1)
                 trial = rand_to_best_2_bin(a, b, c, d, mut, min_b, max_b, popj, dimensions, best, cr_1)
             elif rand_sp < sum(sp[:3]):
                 strategy_num = 2
                 cr_median_2 = statistics.median(cr_memory[2])
                 cr_2 = random.gauss(cr_median_2, 0.1)
-                while (cr < 0) or (cr > 1):
-                    cr_0 = random.gauss(cr_median_2, 0.1)
+                while (cr_2 < 0) or (cr_2 > 1):
+                    cr_2 = random.gauss(cr_median_2, 0.1)
                 trial = rand_2_bin(a, b, c, d, e, mut, min_b, max_b, popj, dimensions, cr_2)
             else:
                 strategy_num = 3
@@ -153,7 +153,7 @@ def rastrigin(x):
 def rastrigin_sade_test():
     result = []
     for num in range(20):
-        it = list(sade(rastrigin, [(-5.12, 5.12)] * 10, popsize=100, its=3000))
+        it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
         result.append(it[-1][-1])
         pass
     mean_result = np.mean(result)
