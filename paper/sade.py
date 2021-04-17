@@ -3,6 +3,7 @@ import pandas as pd
 import random
 import matplotlib.pyplot as plt
 import statistics
+import datetime
 
 
 def sade(fobj, bounds, popsize=20, its=1000, goal=0):
@@ -146,26 +147,34 @@ def rastrigin(x):
     return sum(x ** 2 - 10 * np.cos(2 * np.pi * x) + 10)
 
 
-# it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
-# print(it[-1])
+start = datetime.datetime.now()
+it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
+print(it[-1])
+end = datetime.datetime.now()
+print(end - start)
+x, f = zip(*it)
+plt.plot(f, label='rastrigin with sade')
+plt.yscale('log')
+plt.legend()
+plt.savefig('rastrigin with sade')
+plt.show()
 
-
-def rastrigin_sade_test():
-    result = []
-    for num in range(20):
-        it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
-        result.append(it[-1][-1])
-        pass
-    mean_result = np.mean(result)
-    std_result = np.std(result)
-    success_num = 0
-    for i in result:
-        if np.fabs(i - 0) < 1e-5:
-            success_num += 1
-            pass
-        pass
-    return mean_result, std_result, success_num
-
-
-mean_result, std_result, success_num = rastrigin_sade_test()
-print(mean_result, std_result, success_num)
+# def rastrigin_sade_test():
+#     result = []
+#     for num in range(20):
+#         it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
+#         result.append(it[-1][-1])
+#         pass
+#     mean_result = np.mean(result)
+#     std_result = np.std(result)
+#     success_num = 0
+#     for i in result:
+#         if np.fabs(i - 0) < 1e-5:
+#             success_num += 1
+#             pass
+#         pass
+#     return mean_result, std_result, success_num
+#
+#
+# mean_result, std_result, success_num = rastrigin_sade_test()
+# print(mean_result, std_result, success_num)
