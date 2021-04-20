@@ -125,10 +125,51 @@ def fun_easom(x):
 
 # 14 cross in tray   f(+-1.34941, +-1.34941) = -2.06261  x [-10, 10]*n 建议二维
 def fun_cross_in_tray(x):
-
+    p1 = 1
+    for i in x:
+        p1 *= np.sin(i)
+        pass
+    return -0.0001 * (np.fabs(p1 * np.exp(np.fabs(100 - np.sqrt(sum(x ** 2) / np.pi)))) + 1) ** 0.1
     pass
 
 
+# 15 fun_eggholder   f(512,404.2319) = -959.6407  x [-512,512]*2
+def fun_eggholder(x):
+    return -(x[1] + 47) * np.sin(np.fabs(x[0] / 2 + x[1] + 47)) - x[0] * np.sin(np.fabs(x[0] - x[1] - 47))
+    pass
+
+
+# 16 fun_holder_table f(+-8.05502, +-9.66459) = -19.2085  x [-10,10]*2
+def fun_holder_table(x):
+    return -(np.sin(x[0]) * np.cos(x[1]) * np.exp(np.fabs(1 - np.sqrt(sum(x ** 2)) / np.pi)))
+    pass
+
+
+# 17 fun_mcCormick  f(-0.54719, 1.54719) = -1.9133   -1.5<x1<4  -3<x2<4
+def fun_mcCormick(x):
+    return np.sin(sum(x)) + (x[0] - x[1]) ** 2 - 1.5 * x[0] + 2.5 * x[1] + 1
+    pass
+
+
+# 18 fun_schaffer_n2   f(0,0) = 0 x[-100,100]*2
+def fun_schaffrer_n2(x):
+    return 0.5 + ((np.sin(x[0] ** 2 - x[1] ** 2)) ** 2 - 0.5) / ((1 + 0.001 * (sum(x ** 2))) ** 2)
+    pass
+
+
+# 19 fun_schaffer_n4   f(0,+-1.25313) = 0.292579   x [-100,100]*2
+def fun_schaffrer_n4(x):
+    return 0.5 + ((np.cos(np.sin(np.fabs(x[0] ** 2 - x[1] ** 2)))) ** 2 - 0.5) / ((1 + 0.001 * (sum(x ** 2))) ** 2)
+    pass
+
+
+# 20 fun_styblinski_tang    f(-2.903534,-2.903534,...,-2.903534) = -39.16617 * n 与 -39.16616 * n 之间  x [-5,5]*n
+def fun_styblinski_tang(x):
+    return sum(x ** 4 - 16 * x ** 2 + 5 * x) / 2
+    pass
+
+
+"""
 # Griewank's function min 0
 def fun_grienwank(x):
     i = np.sqrt(np.arange(x.shape[0]) + 1.0)
@@ -234,3 +275,4 @@ def vincent(x=None):
     for i in range(0, 30):
         result += (math.sin(10 * math.log(x[i]))) / 30
     return result
+"""
