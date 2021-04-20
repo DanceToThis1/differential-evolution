@@ -2,11 +2,11 @@
 SHADE success history based adaptive DE
 基于JADE的改进
 基于高斯分布和柯西分布随机生成参数，均值由原来记录SCR，SF的均值改为新存储MCR，MF中的随机值。
+p 由固定值改为随机值，范围为pmin到0.2，pmin计算方法没看懂暂时用0.05替代
+删除参数c，引入参数h，作用与c相似。
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
-import datetime
 import random
 from scipy.stats import cauchy
 
@@ -107,20 +107,3 @@ def matrix_sort(matrix, fobj, pop):
                 matrix[i] = pop[j]
                 matrix[j] = pop[i]
     return matrix
-
-
-def rastrigin(x1):
-    return sum(x1 ** 2 - 10 * np.cos(2 * np.pi * x1) + 10)
-
-
-start = datetime.datetime.now()
-it = list(shade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
-print(it[-1])
-end = datetime.datetime.now()
-print(end - start)
-x, f = zip(*it)
-plt.plot(f, label='rastrigin with shade')
-plt.yscale('log')
-plt.legend()
-plt.savefig('rastrigin with shade')
-plt.show()

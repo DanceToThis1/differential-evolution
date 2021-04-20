@@ -1,12 +1,13 @@
+import math
 import numpy as np
 import pandas as pd
 import random
-import matplotlib.pyplot as plt
 import statistics
-import datetime
 
 
-def sade(fobj, bounds, popsize=20, its=1000, goal=0):
+def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
+    if bounds is None:
+        bounds = [(-100, 100)] * 30
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -104,7 +105,7 @@ def sade(fobj, bounds, popsize=20, its=1000, goal=0):
                     best = trial
             else:
                 failure_memory[i % lp, strategy_num] += 1
-        if np.fabs(min(fitness) - goal) < 1e-6:
+        if np.fabs(min(fitness) - goal) < 1e-8:
             print(i)
             break
         yield best, fitness[best_idx]
@@ -143,38 +144,3 @@ def current_to_rand_1_bin(a, b, c, popj, mut, min_b, max_b):
     return trial
 
 
-def rastrigin(x):
-    return sum(x ** 2 - 10 * np.cos(2 * np.pi * x) + 10)
-
-
-start = datetime.datetime.now()
-it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
-print(it[-1])
-end = datetime.datetime.now()
-print(end - start)
-x, f = zip(*it)
-plt.plot(f, label='rastrigin with sade')
-plt.yscale('log')
-plt.legend()
-plt.savefig('rastrigin with sade')
-plt.show()
-
-# def rastrigin_sade_test():
-#     result = []
-#     for num in range(20):
-#         it = list(sade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
-#         result.append(it[-1][-1])
-#         pass
-#     mean_result = np.mean(result)
-#     std_result = np.std(result)
-#     success_num = 0
-#     for i in result:
-#         if np.fabs(i - 0) < 1e-5:
-#             success_num += 1
-#             pass
-#         pass
-#     return mean_result, std_result, success_num
-#
-#
-# mean_result, std_result, success_num = rastrigin_sade_test()
-# print(mean_result, std_result, success_num)

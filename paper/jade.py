@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import datetime
 import random
 from scipy.stats import cauchy
 
@@ -78,20 +76,3 @@ def matrix_sort(matrix, fobj, pop):
                 matrix[i] = pop[j]
                 matrix[j] = pop[i]
     return matrix
-
-
-def rastrigin(x1):
-    return sum(x1 ** 2 - 10 * np.cos(2 * np.pi * x1) + 10)
-
-
-start = datetime.datetime.now()
-it = list(jade(rastrigin, [(-5.12, 5.12)] * 30, popsize=100, its=3000))
-print(it[-1])
-end = datetime.datetime.now()
-print(end - start)
-x, f = zip(*it)
-plt.plot(f, label='rastrigin with jade')
-plt.yscale('log')
-plt.legend()
-plt.savefig('rastrigin with jade')
-plt.show()
