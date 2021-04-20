@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def jde(fobj, bounds, mut=0.5, cr=0.9, popsize=20, its=1000, goal=0):
+def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=20, its=1000, goal=0):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T

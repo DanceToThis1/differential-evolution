@@ -1,29 +1,4 @@
 import numpy as np
-import math
-
-"""
-benchmark functions
-1 rastrigin          
-2 ackley
-3 sphere
-4 rosenbrock
-5 beale
-6 goldstein price
-7 booth
-8 bukin n.6
-9 matyas
-10 levi n.13
-11 himmelblau
-12 three hump camel
-13 easom
-14 cross in tray
-15 eggholder
-16 holder table
-17 mccormick
-18 schaffer n.2
-19 schaffer n.4
-20 styblinske tang
-"""
 
 
 # 1        f(0,0,...,0) = 0   x [-5.12,5.12]*n
@@ -73,8 +48,8 @@ def fun_booth(x):
     return (x[0] + 2 * x[1] - 7) ** 2 + (2 * x[0] + x[1] - 5) ** 2
 
 
-# 8 bukin f(-10, 1) = 0   x 二维 -15<x1<-5  -3<x2<3
-def fun_bukin(x):
+# 8 bukin n.6 f(-10, 1) = 0   x 二维 -15<x1<-5  -3<x2<3
+def fun_bukin_n6(x):
     return 100 * np.sqrt(np.fabs(x[1] - 0.01 * x[0] ** 2)) + 0.01 * np.fabs(x[0] + 10)
 
 
@@ -89,7 +64,9 @@ def fun_matyas(x):
 
 
 # 10 levi n.13 f(1,1)=0   x [-10,10]*2
-def fun_levi(x):
+def fun_levi_n13(x):
+    return (np.sin(3 * np.pi * x[0])) ** 2 + (x[0] - 1) ** 2 * (1 + (np.sin(3 * np.pi * x[1])) ** 2) + (
+            x[1] - 1) ** 2 * (1 + (np.sin(2 * np.pi * x[1]) ** 2))
     pass
 
 
@@ -146,7 +123,7 @@ def fun_holder_table(x):
 
 
 # 17 fun_mcCormick  f(-0.54719, 1.54719) = -1.9133   -1.5<x1<4  -3<x2<4
-def fun_mcCormick(x):
+def fun_mccormick(x):
     return np.sin(sum(x)) + (x[0] - x[1]) ** 2 - 1.5 * x[0] + 2.5 * x[1] + 1
     pass
 
@@ -168,6 +145,35 @@ def fun_styblinski_tang(x):
     return sum(x ** 4 - 16 * x ** 2 + 5 * x) / 2
     pass
 
+
+"""
+benchmark functions
+  函数名                       最小值点                              x范围                  备注
+1 fun_rastrigin           f(0,0,...,0) = 0                     [(-5.12, 5.12)] * n
+2 fun_ackley              f(0,0,...,0) = 0                     [(-5, 5)] * n
+3 fun_sphere              f(0,0,...,0) = 0                     [(-100, 100)] * n
+4 fun_rosenbrock          f(1,1,...,1) = 0                     [(-100, 100)] * n         n>=2
+5 fun_beale               f(3, 0.5) = 0                        [(-4.5, 4.5)] * 2
+6 fun_goldstein_price     f(0, -1) = 3                         [(-2, 2)] * 2
+7 fun_booth               f(1, 3) = 0                          [(-10,10)]*2
+8 fun_bukin_n6            f(-10, 1) = 0                        [(-15, -5), (-3, 3)]
+9 fun_matyas              f(0,0,...,0) = 0                     [(-10, 10)] * n           n=2
+10 fun_levi_n13           f(1, 1) = 0                          [(-10, 10)] * 2
+11 fun_himmelblau         f(3.0,2.0) = 0                       [(-5, 5)] * 2
+                          f(-2.805118, 3.131312) = 0
+                          f(-3.779310, -3.283186) = 0
+                          f(3.5834428, -1.848126) = 0
+12 fun_three_hump_camel   f(0, 0) = 0                          [(-5, 5)] * 2
+13 fun_easom              f(pi,pi,...pi) = -1                  [(-100,100)] * n          n=2
+14 fun_cross_in_tray      f(+-1.34941, +-1.34941) = -2.06261   [(-10, 10)] * n           n=2
+15 fun_eggholder          f(512,404.2319) = -959.6407          [(-512,512)] * 2 
+16 fun_holder_table       f(+-8.05502, +-9.66459) = -19.2085   [(-10,10)] * 2
+17 fun_mccormick          f(-0.54719, 1.54719) = -1.9133       [(-1.5, 4), (-3, 4)]
+18 fun_schaffrer_n2       f(0,0) = 0                           [(-100,100)] * 2
+19 fun_schaffrer_n4       f(0,+-1.25313) = 0.292579            [(-100,100)] * 2
+20 fun_styblinski_tang    -39.16617*n < f(-2.903534,           [(-5,5)] * n
+                          ...,-2.903534) < -39.16616*n
+"""
 
 """
 # Griewank's function min 0

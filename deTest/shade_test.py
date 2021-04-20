@@ -20,9 +20,9 @@ def rastrigin_shade_test_20(fun, bounds):
     return mean_result, std_result, success_num
 
 
-def shade_test(fun, bounds):
+def shade_test(fun, bounds, its=3000, goal=0):
     start = datetime.datetime.now()
-    it = list(shade(fun, bounds, popsize=100, its=3000))
+    it = list(shade(fun, bounds, popsize=100, its=its, goal=goal))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -32,11 +32,4 @@ def shade_test(fun, bounds):
     plt.legend()
     # plt.savefig('rastrigin with shade')
     plt.show()
-    # fun_weierstrass
-    # FEF8F2 和上一个函数跑起来停不下来。
-    ##############################################################
-    # mean_result, std_result, success_num = rastrigin_shade_test()
-    # print(mean_result, std_result, success_num)
     pass
-
-

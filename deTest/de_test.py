@@ -3,9 +3,9 @@ import datetime
 from paper.de import *
 
 
-def de_rand_1_test(fun, bounds, mut, cr, its):
+def de_rand_1_test(fun, bounds, mut=0.9, cr=0.1, its=3000, goal=0):
     start = datetime.datetime.now()
-    it = list(de(fun, bounds, mut, cr, popsize=100, its=its))
+    it = list(de(fun, bounds, mut, cr, popsize=100, its=its, goal=goal))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -16,4 +16,3 @@ def de_rand_1_test(fun, bounds, mut, cr, its):
     # plt.savefig('rastrigin with de_rand_1')
     plt.show()
     pass
-

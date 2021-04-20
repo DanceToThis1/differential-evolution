@@ -6,7 +6,7 @@ import datetime
 def rastrigin_jade_test_20(fun, bounds):
     result = []
     for num in range(20):
-        it = list(jade(fun, bounds, popsize=100, its=3000))
+        it = list(jade(fun, bounds, popsize=100, its=3000, goal=0))
         result.append(it[-1][-1])
         pass
     mean_result = np.mean(result)
@@ -20,9 +20,9 @@ def rastrigin_jade_test_20(fun, bounds):
     return mean_result, std_result, success_num
 
 
-def jade_test(fun, bounds):
+def jade_test(fun, bounds, its=3000, goal=0):
     start = datetime.datetime.now()
-    it = list(jade(fun, bounds, popsize=100, its=3000))
+    it = list(jade(fun, bounds, popsize=100, its=its, goal=goal))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -32,10 +32,4 @@ def jade_test(fun, bounds):
     plt.legend()
     # plt.savefig('rastrigin with jade')
     plt.show()
-    # fun_weierstrass
-    # FEF8F2 和上一个函数跑起来停不下来。
-    ##############################################################
-    # mean_result, std_result, success_num = rastrigin_jade_test()
-    # print(mean_result, std_result, success_num)
     pass
-
