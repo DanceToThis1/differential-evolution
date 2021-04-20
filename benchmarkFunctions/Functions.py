@@ -8,8 +8,8 @@ def fun_rastrigin(x):
 
 # 2 ackley  f(0,0,...,0) = 0   x [-5,5]*n
 def fun_ackley(x):
-    p1 = -0.2 * ((0.5 * sum(x ** 2)) ** 0.5)
-    p2 = 0.5 * (sum(np.cos(2 * np.pi * x)))
+    p1 = -0.2 * np.sqrt(0.5 * sum(x ** 2))
+    p2 = 0.5 * np.sum(np.cos(2 * np.pi * x))
     return np.exp(1) + 20 - 20 * np.exp(p1) - np.exp(p2)
 
 

@@ -20,7 +20,7 @@ def rastrigin_sade_test_20(fun, bounds):
     return mean_result, std_result, success_num
 
 
-def sade_test(fun, bounds, its=3000, goal=0):
+def sade_test(fun, bounds, its=3000, goal=0, log=0):
     start = datetime.datetime.now()
     it = list(sade(fun, bounds, popsize=100, its=its, goal=goal))
     print(it[-1])
@@ -28,7 +28,8 @@ def sade_test(fun, bounds, its=3000, goal=0):
     print(end - start)
     x, f = zip(*it)
     plt.plot(f, label='sade')
-    # plt.yscale('log')
+    if log == 1:
+        plt.yscale('log')
     plt.legend()
     # plt.savefig('rastrigin with sade')
     plt.show()

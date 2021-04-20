@@ -6,6 +6,10 @@ from deTest.jade_test import *
 from deTest.shade_test import *
 
 if __name__ == '__main__':
+    fun_index = 4
+    algo_index = 2
+    print('function index = ' + str(fun_index))
+    print('algorithm index = ' + str(algo_index))
     algorithm_dic = {
         1: de_rand_1_test,
         2: jde_test,
@@ -37,7 +41,7 @@ if __name__ == '__main__':
     }
     bounds_dic = {
         1: [(-5.12, 5.12)] * 30,
-        2: [(-5, 5)] * 30,
+        2: [(-5, 5)] * 2,
         3: [(-100, 100)] * 30,
         4: [(-100, 100)] * 30,
         5: [(-4.5, 4.5)] * 2,
@@ -79,16 +83,36 @@ if __name__ == '__main__':
         19: 0.292579,
         20: -39.16617 * 30
     }
-    index = 20
-    print('function index = ' + str(index))
-    algorithm_dic[1](functions_dic[index], bounds_dic[index], its=1000, goal=goal_dic[index])
+    log_dic = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 1,
+        5: 0,
+        6: 0,
+        7: 0,
+        8: 0,
+        9: 0,
+        10: 0,
+        11: 0,
+        12: 0,
+        13: 0,
+        14: 0,
+        15: 0,
+        16: 0,
+        17: 0,
+        18: 0,
+        19: 0,
+        20: 0
+    }
+    algorithm_dic[algo_index](functions_dic[fun_index], bounds_dic[fun_index], its=3000, goal=goal_dic[fun_index], log=log_dic[fun_index])
     pass
-# 2,4, (8),(14),15
+# 4, (8),(14),15
 """
 benchmark functions
   函数名                       最小值点                              x范围                  备注
 1 fun_rastrigin           f(0,0,...,0) = 0                     [(-5.12, 5.12)] * n
-2 fun_ackley              f(0,0,...,0) = 0                     [(-5, 5)] * n
+2 fun_ackley              f(0,0) = 0                           [(-5, 5)] * 2
 3 fun_sphere              f(0,0,...,0) = 0                     [(-100, 100)] * n
 4 fun_rosenbrock          f(1,1,...,1) = 0                     [(-100, 100)] * n         n>=2
 5 fun_beale               f(3, 0.5) = 0                        [(-4.5, 4.5)] * 2
