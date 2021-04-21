@@ -59,8 +59,10 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
             pass
         for k in range(len(population_new)):
             population[k] = population_new[k]
-        mean_cr = (1 - c) * mean_cr + c * np.mean(s_cr)
-        mean_mut = (1 - c) * mean_mut + c * (sum(ff ** 2 for ff in s_mut) / sum(s_mut))
+            pass
+        if s_cr:
+            mean_cr = (1 - c) * mean_cr + c * np.mean(s_cr)
+            mean_mut = (1 - c) * mean_mut + c * (sum(ff ** 2 for ff in s_mut) / sum(s_mut))
         if np.fabs(fitness_best - goal) < 1e-6:
             print(i)
             break

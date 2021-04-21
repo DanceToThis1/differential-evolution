@@ -6,8 +6,8 @@ from deTest.jade_test import *
 from deTest.shade_test import *
 
 if __name__ == '__main__':
-    fun_index = 4
-    algo_index = 2
+    fun_index = 18
+    algo_index = 1
     print('function index = ' + str(fun_index))
     print('algorithm index = ' + str(algo_index))
     algorithm_dic = {
@@ -84,41 +84,42 @@ if __name__ == '__main__':
         20: -39.16617 * 30
     }
     log_dic = {
-        1: 0,
-        2: 0,
-        3: 0,
+        1: 1,
+        2: 1,
+        3: 1,
         4: 1,
-        5: 0,
+        5: 1,
         6: 0,
-        7: 0,
+        7: 1,
         8: 0,
-        9: 0,
-        10: 0,
-        11: 0,
-        12: 0,
+        9: 1,
+        10: 1,
+        11: 1,
+        12: 1,
         13: 0,
         14: 0,
         15: 0,
         16: 0,
         17: 0,
-        18: 0,
+        18: 1,
         19: 0,
         20: 0
     }
-    algorithm_dic[algo_index](functions_dic[fun_index], bounds_dic[fun_index], its=3000, goal=goal_dic[fun_index], log=log_dic[fun_index])
+    algorithm_dic[algo_index](functions_dic[fun_index], bounds_dic[fun_index], its=3000, goal=goal_dic[fun_index],
+                              log=log_dic[fun_index])
     pass
-# 4, (8),(14),15
+
 """
 benchmark functions
   函数名                       最小值点                              x范围                  备注
-1 fun_rastrigin           f(0,0,...,0) = 0                     [(-5.12, 5.12)] * n
+1 fun_rastrigin           f(0,0,...,0) = 0                     [(-5.12, 5.12)] * n       
 2 fun_ackley              f(0,0) = 0                           [(-5, 5)] * 2
 3 fun_sphere              f(0,0,...,0) = 0                     [(-100, 100)] * n
 4 fun_rosenbrock          f(1,1,...,1) = 0                     [(-100, 100)] * n         n>=2
 5 fun_beale               f(3, 0.5) = 0                        [(-4.5, 4.5)] * 2
 6 fun_goldstein_price     f(0, -1) = 3                         [(-2, 2)] * 2
 7 fun_booth               f(1, 3) = 0                          [(-10, 10)] * 2
-8 fun_bukin_n6            f(-10, 1) = 0                        [(-15, -5), (-3, 3)]
+8 fun_bukin_n6            f(-10, 1) = 0                        [(-15, -5), (-3, 3)]      
 9 fun_matyas              f(0,0,...,0) = 0                     [(-10, 10)] * n           n=2
 10 fun_levi_n13           f(1, 1) = 0                          [(-10, 10)] * 2
 11 fun_himmelblau         f(3.0,2.0) = 0                       [(-5, 5)] * 2

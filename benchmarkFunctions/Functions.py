@@ -39,8 +39,7 @@ def fun_beale(x):
 def fun_goldstein_price(x):
     return (1 + ((x[0] + x[1] + 1) ** 2) * (
             19 - 14 * x[0] + 3 * x[0] ** 2 - 14 * x[1] + 6 * x[0] * x[1] + 3 * x[1] ** 2)) * (
-                   30 + ((2 * x[0] - 3 * x[1]) ** 2) * (
-                   18 - 32 * x[0] + 12 * x[0] ** 2 + 48 * x[1] - 36 * x[0] * x[1] + 27 * x[1] ** 2))
+                   30 + ((2 * x[0] - 3 * x[1]) ** 2) * (18 - 32 * x[0] + 12 * x[0] ** 2 + 48 * x[1] - 36 * x[0] * x[1] + 27 * x[1] ** 2))
 
 
 # 7 booth f(1,3) = 0  x  [-10,10]*2
@@ -106,13 +105,14 @@ def fun_cross_in_tray(x):
     for i in x:
         p1 *= np.sin(i)
         pass
-    return -0.0001 * (np.fabs(p1 * np.exp(np.fabs(100 - np.sqrt(sum(x ** 2) / np.pi)))) + 1) ** 0.1
+    return -0.0001 * (np.fabs(p1 * np.exp(np.fabs(100 - np.sqrt(sum(x ** 2)) / np.pi))) + 1) ** 0.1
     pass
 
 
 # 15 fun_eggholder   f(512,404.2319) = -959.6407  x [-512,512]*2
 def fun_eggholder(x):
-    return -(x[1] + 47) * np.sin(np.fabs(x[0] / 2 + x[1] + 47)) - x[0] * np.sin(np.fabs(x[0] - x[1] - 47))
+    return -(x[1] + 47) * np.sin(np.sqrt(np.fabs(x[0] / 2 + x[1] + 47))) - x[0] * np.sin(
+        np.sqrt(np.fabs(x[0] - x[1] - 47)))
     pass
 
 
