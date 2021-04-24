@@ -44,7 +44,7 @@ def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
                 trial = rand_2_bin(a, b, c, d, e, mut, min_b, max_b, popj, dimensions, cr)
             else:
                 strategy_num = 3
-                trial = current_to_rand_1_bin(a, b, c, popj, mut, min_b, max_b)
+                trial = current_to_rand_1(a, b, c, popj, mut, min_b, max_b)
             f = fobj(trial)
             if f < fitness[j]:
                 fitness[j] = f
@@ -93,7 +93,7 @@ def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
                 trial = rand_2_bin(a, b, c, d, e, mut, min_b, max_b, popj, dimensions, cr_2)
             else:
                 strategy_num = 3
-                trial = current_to_rand_1_bin(a, b, c, popj, mut, min_b, max_b)
+                trial = current_to_rand_1(a, b, c, popj, mut, min_b, max_b)
             f = fobj(trial)
             if f < fitness[j]:
                 fitness[j] = f
@@ -138,7 +138,7 @@ def rand_2_bin(a, b, c, d, e, mut, min_b, max_b, popj, dimensions, cr):
     return trial
 
 
-def current_to_rand_1_bin(a, b, c, popj, mut, min_b, max_b):
+def current_to_rand_1(a, b, c, popj, mut, min_b, max_b):
     k = np.random.rand()
     trial = np.clip(popj + k * (a - popj) + mut * (b - c), min_b, max_b)
     return trial

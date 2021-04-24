@@ -6,7 +6,7 @@ from deTest.jade_test import *
 from deTest.shade_test import *
 
 if __name__ == '__main__':
-    fun_index = 18
+    fun_index = 1
     algo_index = 1
     print('function index = ' + str(fun_index))
     print('algorithm index = ' + str(algo_index))
