@@ -4,10 +4,11 @@ from deTest.de_test import *
 from deTest.jde_test import *
 from deTest.jade_test import *
 from deTest.shade_test import *
+from deTest.code_test import *
 
 if __name__ == '__main__':
-    fun_index = 1
-    algo_index = 1
+    fun_index = 5
+    algo_index = 6
     print('function index = ' + str(fun_index))
     print('algorithm index = ' + str(algo_index))
     algorithm_dic = {
@@ -15,7 +16,8 @@ if __name__ == '__main__':
         2: jde_test,
         3: sade_test,
         4: jade_test,
-        5: shade_test
+        5: shade_test,
+        6: code_test
     }
     functions_dic = {
         1: fun_rastrigin,
