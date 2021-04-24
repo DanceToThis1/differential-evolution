@@ -1,14 +1,13 @@
-from benchmarkFunctions.Functions import *
-from deTest.sade_test import *
-from deTest.de_test import *
-from deTest.jde_test import *
-from deTest.jade_test import *
-from deTest.shade_test import *
-from deTest.code_test import *
+from benchmarkFunctions.functions import *
+from paper.de import *
+from paper.jde import *
+from paper.jade import *
+from paper.shade import *
+from paper.code import *
 
 if __name__ == '__main__':
-    fun_index = 5
-    algo_index = 6
+    fun_index = 6
+    algo_index = 4
     print('function index = ' + str(fun_index))
     print('algorithm index = ' + str(algo_index))
     algorithm_dic = {

@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import datetime
 
 
 def de(fobj, bounds, mut=0.9, cr=0.1, popsize=20, its=1000, goal=0):
@@ -95,3 +97,17 @@ def de_randtobest_2(fobj, bounds, mut=0.5, cr=0.3, popsize=20, its=1000, goal=0)
         yield best, fitness[best_idx]
     pass
 
+
+def de_rand_1_test(fun, bounds, mut=0.9, cr=0.1, its=3000, goal=0, log=0):
+    start = datetime.datetime.now()
+    it = list(de(fun, bounds, mut, cr, popsize=100, its=its, goal=goal))
+    print(it[-1])
+    end = datetime.datetime.now()
+    print(end - start)
+    x, f = zip(*it)
+    plt.plot(f, label='de rand 1 bin')
+    if log == 1:
+        plt.yscale('log')
+    plt.legend()
+    plt.show()
+    pass
