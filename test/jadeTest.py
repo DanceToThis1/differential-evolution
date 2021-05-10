@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-#                           times
-# [-100, 100] * 30          1500*20  1.7646305234857702e-52   7.6918422560958e-52
+#                                times
+# [-100, 100] * 30               1500*20  1.7646305234857702e-52   7.6918422560958e-52
 def fun_1(x):
     return np.sum(x ** 2)
     pass
@@ -23,7 +23,7 @@ def fun_3(x):
     p = 0
     for i in range(len(x)):
         p1 = 0
-        for j in range(i):
+        for j in range(i + 1):
             p1 += x[j]
             pass
         p += (p1 ** 2)
@@ -54,14 +54,14 @@ def fun_6(x):
     pass
 
 
-# [-1.28, 1.28] * 30  20s  0.8
+# [-1.28, 1.28] * 30  20s  0.8  ############################
 def fun_7(x):
     p1 = np.arange(len(x)) + 1.0
     return sum(p1 * x ** 4) + np.random.rand()
     pass
 
 
-# [-500, 500] * 30    18s  10^-3
+# [-500, 500] * 30    18s  10^-3          ####################################
 def fun_8(x):
     p1 = sum(x * np.sin(np.sqrt(np.fabs(x))))
     return 418.98288727243369 * len(x) - p1
@@ -81,7 +81,7 @@ def fun_10(x):
     pass
 
 
-# [-600, 600] * 30   19s  0.0
+# [-600, 600] * 30   19s  0.0       ###########################
 def fun_11(x):
     p1 = np.sqrt(np.arange(len(x)) + 1.0)
     return np.sum(x ** 2) / 4000.0 - np.prod(np.cos(x / p1)) + 1.0
@@ -173,7 +173,15 @@ def jade(fobj, bounds, popsize=20, its=1000, c=0.1):
                     mut = cauchy.rvs(loc=mean_mut, scale=0.1)
                 else:
                     mut = 1
-            mutant = np.clip(population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2), min_b, max_b)
+            mutant = population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2)
+            for mutant_i in range(len(mutant)):
+                if mutant[mutant_i] < min_b[mutant_i]:
+                    mutant[mutant_i] = (mutant[mutant_i] + min_b[mutant_i]) / 2
+                    pass
+                elif mutant[mutant_i] > max_b[mutant_i]:
+                    mutant[mutant_i] = (mutant[mutant_i] + max_b[mutant_i]) / 2
+                    pass
+                pass
             cr = random.gauss(mean_cr, 0.1)
             cross_points = np.random.rand(dimensions) < cr
             if not np.any(cross_points):
@@ -230,107 +238,6 @@ def jade_test_20(fun, bounds, its):
     data_mean.to_csv('data_mean.csv', mode='a', header=False)
 
 
-def shade(fobj, bounds, popsize=20, its=1000, h=100):
-    dimensions = len(bounds)
-    pop = np.random.rand(popsize, dimensions)
-    min_b, max_b = np.asarray(bounds).T
-    diff = np.fabs(min_b - max_b)
-    population = min_b + pop * diff
-    population_new = np.random.rand(popsize, dimensions)
-    for i in range(len(population_new)):
-        population_new[i] = population[i]
-        pass
-    mcr = [0.5] * h
-    mf = [0.5] * h
-    m = 0
-    a = []  # 定义一个新种群A初始化为空
-    for i in range(its):
-        s_mut = []
-        s_cr = []  # 存储成功的cr值，每代清空
-        population = list(population)
-        population.sort(key=fobj)
-        population = np.array(population)
-        best = population[0]
-        fitness_best = fobj(best)
-        fitness = np.asarray([fobj(ind) for ind in population])
-        fk = []
-        for j in range(popsize):
-            r_i = random.randint(0, h - 1)
-            cr = random.gauss(mcr[r_i], 0.1)
-            mut = cauchy.rvs(loc=mf[r_i], scale=0.1)
-            while mut < 0 or mut > 1:
-                if mut < 0:
-                    mut = cauchy.rvs(loc=mf[r_i], scale=0.1)
-                else:
-                    mut = 1
-            p = random.randint(int(0.05 * popsize), int(0.2 * popsize))  # p的设置，固定值0.05-0.2 * NP，或者随机调整。
-            idx_x_best_p = random.randint(0, int(p))
-            x_best_p = population[idx_x_best_p]
-            idxs = [idx for idx in range(popsize) if idx != j]
-            x_r1, x_r2 = population[np.random.choice(idxs, 2, replace=False)]
-            idx_x_r2 = random.randint(0, len(population) + len(a) - 3)
-            if idx_x_r2 >= (len(population) - 2):
-                x_r2 = a[idx_x_r2 - len(population) + 2]
-            mutant = np.clip(population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2), min_b, max_b)
-            cross_points = np.random.rand(dimensions) < cr
-            if not np.any(cross_points):
-                cross_points[np.random.randint(0, dimensions)] = True
-            trial = np.where(cross_points, mutant, population[j])
-            fit = fobj(trial)
-            if fit < fitness[j]:
-                population_new[j] = trial
-                a.append(population[j])
-                s_cr.append(cr)
-                s_mut.append(mut)
-                fk.append(np.abs(fit - fitness[j]))  # 保存差值，差值越高后面占比越高。
-                pass
-            else:
-                population_new[j] = population[j]
-                pass
-            pass
-        while len(a) > popsize:
-            index = random.randint(0, len(a) - 1)
-            a.pop(index)
-            pass
-        for k in range(len(population_new)):
-            population[k] = population_new[k]
-        if s_cr:
-            w_k = [fki / sum(fk) for fki in fk]
-            mean_wa = sum(w_k[index] * s_cr[index] for index in range(len(s_cr)))
-            mean_wl1 = sum(w_k[index] * s_mut[index] ** 2 for index in range(len(s_cr)))
-            mean_wl2 = sum(w_k[index] * s_mut[index] for index in range(len(s_cr)))
-            mean_wl = mean_wl1 / mean_wl2
-            mcr[m] = mean_wa
-            mf[m] = mean_wl
-            m += 1
-            if m >= h:
-                m = 1
-                pass
-            pass
-        else:
-            m += 1
-            if m >= h:
-                m = 1
-                pass
-            pass
-        yield best, fitness_best
-
-
-def shade_test_20(fun, bounds, its):
-    result = []
-    for num in range(2):
-        it = list(shade(fun, bounds, popsize=100, its=its))
-        result.append(it[-1][-1])
-        print(num, result[-1])
-        pass
-    data = pd.DataFrame([['shade', fun.__name__, its, i] for i in result])
-    data.to_csv('data.csv', mode='a', header=False)
-    mean_result = np.mean(result)
-    std_result = np.std(result)
-    data_mean = pd.DataFrame([['SHADE', fun.__name__, its, mean_result, std_result]])
-    data_mean.to_csv('data_mean.csv', mode='a', header=False)
-
-
 dic1 = {
     1: {1: fun_1, 2: [(-100, 100)] * 30, 3: 1500},
     2: {1: fun_2, 2: [(-10, 10)] * 30, 3: 2000},
@@ -354,6 +261,7 @@ dic1 = {
     20: {1: fun_12, 2: [(-50, 50)] * 30, 3: 1500},
     21: {1: fun_13, 2: [(-50, 50)] * 30, 3: 1500}
 }
-for test_index in range(13):
-    shade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
-    pass
+# for test_index in range(13):
+#     jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
+#     pass
+jade_test(dic1[4][1], dic1[4][2], dic1[4][3])

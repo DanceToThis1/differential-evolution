@@ -6,7 +6,7 @@ import datetime
 import matplotlib.pyplot as plt
 
 
-def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
+def sade(fobj, bounds=None, popsize=20, its=1000):
     if bounds is None:
         bounds = [(-100, 100)] * 30
     dimensions = len(bounds)
@@ -106,9 +106,6 @@ def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
                     best = trial
             else:
                 failure_memory[i % lp, strategy_num] += 1
-        if np.fabs(min(fitness) - goal) < 1e-8:
-            print(i)
-            break
         yield best, fitness[best_idx]
 
 
@@ -162,9 +159,9 @@ def rastrigin_sade_test_20(fun, bounds):
     return mean_result, std_result, success_num
 
 
-def sade_test(fun, bounds, its=3000, goal=0, log=0):
+def sade_test(fun, bounds, its=3000, log=1):
     start = datetime.datetime.now()
-    it = list(sade(fun, bounds, popsize=100, its=its, goal=goal))
+    it = list(sade(fun, bounds, popsize=100, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)

@@ -8,12 +8,13 @@ p 由固定值改为随机值，范围为pmin到0.2，pmin计算方法没看懂�
 
 import numpy as np
 import random
+import pandas as pd
 from scipy.stats import cauchy
 import matplotlib.pyplot as plt
 import datetime
 
 
-def shade(fobj, bounds, popsize=20, its=1000, goal=0, h=100):
+def shade(fobj, bounds, popsize=20, its=1000, h=100):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -96,32 +97,12 @@ def shade(fobj, bounds, popsize=20, its=1000, goal=0, h=100):
                 m = 1
                 pass
             pass
-        if np.fabs(fitness_best - goal) < 1e-6:
-            print(i)
-            break
         yield best, fitness_best
 
 
-def shade_test_20(fun, bounds):
-    result = []
-    for num in range(20):
-        it = list(shade(fun, bounds, popsize=100, its=3000))
-        result.append(it[-1][-1])
-        pass
-    mean_result = np.mean(result)
-    std_result = np.std(result)
-    success_num = 0
-    for i in result:
-        if np.fabs(i - 0) < 1e-8:
-            success_num += 1
-            pass
-        pass
-    return mean_result, std_result, success_num
-
-
-def shade_test(fun, bounds, its=3000, goal=0, log=0):
+def shade_test(fun, bounds, its=3000, log=0):
     start = datetime.datetime.now()
-    it = list(shade(fun, bounds, popsize=100, its=its, goal=goal))
+    it = list(shade(fun, bounds, popsize=100, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -132,3 +113,18 @@ def shade_test(fun, bounds, its=3000, goal=0, log=0):
     plt.legend()
     plt.show()
     pass
+
+
+def shade_test_20(fun, bounds, its):
+    result = []
+    for num in range(2):
+        it = list(shade(fun, bounds, popsize=100, its=its))
+        result.append(it[-1][-1])
+        print(num, result[-1])
+        pass
+    data = pd.DataFrame([['shade', fun.__name__, its, i] for i in result])
+    data.to_csv('data.csv', mode='a', header=False)
+    mean_result = np.mean(result)
+    std_result = np.std(result)
+    data_mean = pd.DataFrame([['SHADE', fun.__name__, its, mean_result, std_result]])
+    data_mean.to_csv('data_mean.csv', mode='a', header=False)
