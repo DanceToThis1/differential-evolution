@@ -22,7 +22,9 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
     for i in range(its):
         s_mut = []
         s_cr = []  # 存储成功的cr值，每代清空
-        matrix_sort(population, fobj, pop)  # 为了得到种群中前百分之几的个体需要对种群中的个体进行排序
+        population = list(population)
+        population.sort(key=fobj)
+        population = np.array(population)
         best = population[0]
         fitness_best = fobj(best)
         fitness = np.asarray([fobj(ind) for ind in population])
@@ -69,17 +71,6 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
             print(i)
             break
         yield best, fitness_best
-
-
-def matrix_sort(matrix, fobj, pop):
-    for i in range(len(matrix)):
-        for j in range(i, len(matrix)):
-            if fobj(matrix[i]) > fobj(matrix[j]):
-                pop[i] = matrix[i]
-                pop[j] = matrix[j]
-                matrix[i] = pop[j]
-                matrix[j] = pop[i]
-    return matrix
 
 
 def jade_test(fun, bounds, its=3000, goal=0, log=0):

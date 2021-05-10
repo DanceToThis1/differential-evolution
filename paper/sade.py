@@ -145,7 +145,6 @@ def current_to_rand_1(a, b, c, popj, mut, min_b, max_b):
     return trial
 
 
-
 def rastrigin_sade_test_20(fun, bounds):
     result = []
     for num in range(20):
@@ -174,6 +173,5 @@ def sade_test(fun, bounds, its=3000, goal=0, log=0):
     if log == 1:
         plt.yscale('log')
     plt.legend()
-    # plt.savefig('rastrigin with sade')
     plt.show()
     pass

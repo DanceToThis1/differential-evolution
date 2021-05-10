@@ -58,7 +58,7 @@ def code(fobj, bounds, popsize=20, its=2000, goal=0):
     pass
 
 
-def code_test(fun, bounds, mut=0.9, cr=0.1, its=3000, goal=0, log=0):
+def code_test(fun, bounds, its=3000, goal=0, log=0):
     start = datetime.datetime.now()
     it = list(code(fun, bounds, popsize=100, its=its, goal=goal))
     print(it[-1])
