@@ -159,7 +159,7 @@ def jade(fobj, bounds, popsize=20, its=1000, c=0.1):
         fitness_best = fobj(best)
         fitness = np.asarray([fobj(ind) for ind in population])
         for j in range(popsize):
-            p = 0.05 * popsize  # p的设置，固定值0.05-0.2 * NP，或者自适应调整。
+            p = 0.05 * popsize
             idx_x_best_p = random.randint(0, int(p))
             x_best_p = population[idx_x_best_p]
             idxs = [idx for idx in range(popsize) if idx != j]
@@ -230,12 +230,12 @@ def jade_test_20(fun, bounds, its):
         result.append(it[-1][-1])
         print(num, result[-1])
         pass
-    data = pd.DataFrame([['jade', fun.__name__, its, i] for i in result])
+    data = pd.DataFrame([['JADE', fun.__name__, its, i] for i in result])
     data.to_csv('data.csv', mode='a', header=False)
     mean_result = np.mean(result)
     std_result = np.std(result)
     data_mean = pd.DataFrame([['JADE', fun.__name__, its, mean_result, std_result]])
-    data_mean.to_csv('data_mean.csv', mode='a', header=False)
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
 
 
 dic1 = {
@@ -261,7 +261,6 @@ dic1 = {
     20: {1: fun_12, 2: [(-50, 50)] * 30, 3: 1500},
     21: {1: fun_13, 2: [(-50, 50)] * 30, 3: 1500}
 }
-# for test_index in range(13):
-#     jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
-#     pass
-jade_test(dic1[4][1], dic1[4][2], dic1[4][3])
+for test_index in range(13):
+    jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
+    pass
