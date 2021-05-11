@@ -176,10 +176,10 @@ def jade(fobj, bounds, popsize=20, its=1000, c=0.1):
             mutant = population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2)
             for mutant_i in range(len(mutant)):
                 if mutant[mutant_i] < min_b[mutant_i]:
-                    mutant[mutant_i] = (mutant[mutant_i] + min_b[mutant_i]) / 2
+                    mutant[mutant_i] = (population[j][mutant_i] + min_b[mutant_i]) / 2
                     pass
                 elif mutant[mutant_i] > max_b[mutant_i]:
-                    mutant[mutant_i] = (mutant[mutant_i] + max_b[mutant_i]) / 2
+                    mutant[mutant_i] = (population[j][mutant_i] + max_b[mutant_i]) / 2
                     pass
                 pass
             cr = random.gauss(mean_cr, 0.1)
@@ -225,7 +225,7 @@ def jade_test(fun, bounds, its=1000, log=1):
 
 def jade_test_20(fun, bounds, its):
     result = []
-    for num in range(2):
+    for num in range(20):
         it = list(jade(fun, bounds, popsize=100, its=its))
         result.append(it[-1][-1])
         print(num, result[-1])
@@ -264,3 +264,4 @@ dic1 = {
 for test_index in range(13):
     jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
     pass
+
