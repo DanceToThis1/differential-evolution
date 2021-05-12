@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-#                                times
-# [-100, 100] * 30               1500*20  1.7646305234857702e-52   7.6918422560958e-52
+# [-100, 100] * 30
 def fun_1(x):
     return np.sum(x ** 2)
     pass
@@ -145,7 +144,6 @@ def jade(fobj, bounds, popsize=20, its=1000, c=0.1):
     for i in range(len(population_new)):
         population_new[i] = population[i]
         pass
-    mut = 0.5
     mean_cr = 0.5
     mean_mut = 0.5
     a = []  # 定义一个新种群A初始化为空
@@ -261,7 +259,7 @@ dic1 = {
     20: {1: fun_12, 2: [(-50, 50)] * 30, 3: 1500},
     21: {1: fun_13, 2: [(-50, 50)] * 30, 3: 1500}
 }
-for test_index in range(13):
+# 后面几个迭代次数多的时间太长, 不跑了
+for test_index in range(13, 21):
     jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
     pass
-
