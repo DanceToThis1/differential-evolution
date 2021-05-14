@@ -134,6 +134,99 @@ def fun_13(x):
     pass
 
 
+# [(-5, 10), (0, 15)]
+def fun_branin(x):
+    a = 1
+    b = 5.1 / (4 * np.pi ** 2)
+    c = 5 / np.pi
+    r = 6
+    s = 10
+    t = 1 / (8 * np.pi)
+    return a * (x[1] - b * x[0] ** 2 + c * x[0] - r) ** 2 + s * (1 - t) * np.cos(x[0]) + s
+    pass
+
+
+def fun_goldstein_price(x):
+    return (1 + ((x[0] + x[1] + 1) ** 2) * (19 - 14 * x[0] + 3 * x[0] ** 2 - 14 * x[1] + 6 * x[0] * x[1] + 3 * x[1] ** 2)) * (
+            30 + ((2 * x[0] - 3 * x[1]) ** 2) * (18 - 32 * x[0] + 12 * x[0] ** 2 + 48 * x[1] - 36 * x[0] * x[1] + 27 * x[1] ** 2))
+
+
+# [(0, 1)] * 3
+def fun_hartman3(x):
+    alpha = [1.0, 1.2, 3.0, 3.2]
+    a = [
+        [3, 10, 30],
+        [0.1, 10, 35],
+        [3, 10, 30],
+        [0.1, 10, 35]
+    ]
+    p = [
+        [3689, 1170, 2673],
+        [4689, 4387, 7470],
+        [1091, 8732, 5547],
+        [381, 5743, 8828]
+    ]
+    outer = 0
+    for i in range(4):
+        inner = 0
+        for j in range(3):
+            inner += a[i][j] * (x[j] - 0.0001 * p[i][j]) ** 2
+            pass
+        outer += alpha[i] * np.exp(-inner)
+        pass
+    return -outer
+    pass
+
+
+# [(0, 1)] * 6
+def fun_hartman6(x):
+    alpha = [1.0, 1.2, 3.0, 3.2]
+    a = [
+        [10, 3, 17, 3.5, 1.7, 8],
+        [0.05, 10, 17, 0.1, 8, 14],
+        [3, 3.5, 1.7, 10, 17, 8],
+        [17, 8, 0.05, 10, 0.1, 14]
+    ]
+    p = [
+        [1312, 1696, 5569, 124, 8283, 5886],
+        [2329, 4135, 8307, 3736, 1004, 9991],
+        [2348, 1451, 3522, 2883, 3047, 6650],
+        [4047, 8828, 8732, 5743, 1091, 381]
+    ]
+    outer = 0
+    for i in range(4):
+        inner = 0
+        for j in range(6):
+            inner += a[i][j] * (x[j] - 0.0001 * p[i][j]) ** 2
+            pass
+        outer += alpha[i] * np.exp(-inner)
+        pass
+    return -outer
+    pass
+
+
+# [(0, 10)] * 4
+def fun_shekel5(x):
+    m = 5
+    outer = 0
+    alpha = [1, 2, 2, 4, 4, 6, 3, 7, 5, 5]
+    c = [
+        [4, 1, 8, 6, 3, 2, 5, 8, 6, 7],
+        [4, 1, 8, 6, 7, 9, 3, 1, 2, 3.6],
+        [4, 1, 8, 6, 3, 2, 5, 8, 6, 7],
+        [4, 1, 8, 6, 7, 9, 3, 1, 2, 3.6]
+    ]
+    for i in range(m):
+        inner = 0
+        for j in range(4):
+            inner += ((x[j] - c[j][i]) ** 2 + alpha[i] * 0.1)
+            pass
+        outer += 1 / inner
+        pass
+    return -outer
+    pass
+
+
 def jade(fobj, bounds, popsize=20, its=1000, c=0.1):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
@@ -260,6 +353,7 @@ dic1 = {
     21: {1: fun_13, 2: [(-50, 50)] * 30, 3: 1500}
 }
 # 后面几个迭代次数多的时间太长, 不跑了
-for test_index in range(13, 21):
-    jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
-    pass
+# for test_index in range(13, 21):
+#     jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
+#     pass
+jade_test(fun_shekel5, [(0, 10)] * 4, log=0)
