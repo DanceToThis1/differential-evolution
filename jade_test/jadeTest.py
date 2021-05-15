@@ -211,16 +211,61 @@ def fun_shekel5(x):
     outer = 0
     alpha = [1, 2, 2, 4, 4, 6, 3, 7, 5, 5]
     c = [
-        [4, 1, 8, 6, 3, 2, 5, 8, 6, 7],
-        [4, 1, 8, 6, 7, 9, 3, 1, 2, 3.6],
-        [4, 1, 8, 6, 3, 2, 5, 8, 6, 7],
-        [4, 1, 8, 6, 7, 9, 3, 1, 2, 3.6]
+        [4.0, 1, 8, 6, 3, 2, 5, 8, 6, 7.0],
+        [4.0, 1, 8, 6, 7, 9, 3, 1, 2, 3.6],
+        [4.0, 1, 8, 6, 3, 2, 5, 8, 6, 7.0],
+        [4.0, 1, 8, 6, 7, 9, 3, 1, 2, 3.6]
     ]
     for i in range(m):
         inner = 0
         for j in range(4):
-            inner += ((x[j] - c[j][i]) ** 2 + alpha[i] * 0.1)
+            inner += (x[j] - c[j][i]) ** 2
             pass
+        inner += alpha[i] * 0.1
+        outer += 1 / inner
+        pass
+    return -outer
+    pass
+
+
+def fun_shekel7(x):
+    m = 7
+    outer = 0
+    alpha = [1, 2, 2, 4, 4, 6, 3, 7, 5, 5]
+    c = [
+        [4.0, 1, 8, 6, 3, 2, 5, 8, 6, 7.0],
+        [4.0, 1, 8, 6, 7, 9, 3, 1, 2, 3.6],
+        [4.0, 1, 8, 6, 3, 2, 5, 8, 6, 7.0],
+        [4.0, 1, 8, 6, 7, 9, 3, 1, 2, 3.6]
+    ]
+    for i in range(m):
+        inner = 0
+        for j in range(4):
+            inner += (x[j] - c[j][i]) ** 2
+            pass
+        inner += alpha[i] * 0.1
+        outer += 1 / inner
+        pass
+    return -outer
+    pass
+
+
+def fun_shekel10(x):
+    m = 10
+    outer = 0
+    alpha = [1, 2, 2, 4, 4, 6, 3, 7, 5, 5]
+    c = [
+        [4.0, 1, 8, 6, 3, 2, 5, 8, 6, 7.0],
+        [4.0, 1, 8, 6, 7, 9, 3, 1, 2, 3.6],
+        [4.0, 1, 8, 6, 3, 2, 5, 8, 6, 7.0],
+        [4.0, 1, 8, 6, 7, 9, 3, 1, 2, 3.6]
+    ]
+    for i in range(m):
+        inner = 0
+        for j in range(4):
+            inner += (x[j] - c[j][i]) ** 2
+            pass
+        inner += alpha[i] * 0.1
         outer += 1 / inner
         pass
     return -outer
@@ -316,7 +361,7 @@ def jade_test(fun, bounds, its=1000, log=1):
 
 def jade_test_20(fun, bounds, its):
     result = []
-    for num in range(20):
+    for num in range(50):
         it = list(jade(fun, bounds, popsize=100, its=its))
         result.append(it[-1][-1])
         print(num, result[-1])
@@ -343,17 +388,15 @@ dic1 = {
     11: {1: fun_11, 2: [(-600, 600)] * 30, 3: 500},
     12: {1: fun_12, 2: [(-50, 50)] * 30, 3: 500},
     13: {1: fun_13, 2: [(-50, 50)] * 30, 3: 500},
-    14: {1: fun_5, 2: [(-30, 30)] * 30, 3: 20000},
-    15: {1: fun_6, 2: [(-100, 100)] * 30, 3: 1500},
-    16: {1: fun_8, 2: [(-500, 500)] * 30, 3: 9000},
-    17: {1: fun_9, 2: [(-5.12, 5.12)] * 30, 3: 5000},
-    18: {1: fun_10, 2: [(-32, 32)] * 30, 3: 2000},
-    19: {1: fun_11, 2: [(-600, 600)] * 30, 3: 3000},
-    20: {1: fun_12, 2: [(-50, 50)] * 30, 3: 1500},
-    21: {1: fun_13, 2: [(-50, 50)] * 30, 3: 1500}
+    14: {1: fun_branin, 2: [(-5, 10), (0, 15)], 3: 200},
+    15: {1: fun_goldstein_price, 2: [(-2, 2)] * 2, 3: 200},
+    16: {1: fun_hartman3, 2: [(0, 1)] * 3, 3: 200},
+    17: {1: fun_hartman6, 2: [(0, 1)] * 6, 3: 200},
+    18: {1: fun_shekel5, 2: [(0, 10)] * 4, 3: 200},
+    19: {1: fun_shekel7, 2: [(0, 10)] * 4, 3: 200},
+    20: {1: fun_shekel10, 2: [(0, 10)] * 4, 3: 200}
 }
-# 后面几个迭代次数多的时间太长, 不跑了
-# for test_index in range(13, 21):
-#     jade_test_20(dic1[test_index + 1][1], dic1[test_index + 1][2], dic1[test_index + 1][3])
-#     pass
-jade_test(fun_shekel5, [(0, 10)] * 4, log=0)
+for test_index in range(14, 15):
+    jade_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
+    pass
+# jade_test(fun_shekel5, [(0, 10)] * 4, its=200, log=0)
