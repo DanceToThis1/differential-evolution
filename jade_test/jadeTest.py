@@ -17,7 +17,7 @@ def fun_2(x):
     return np.sum(np.fabs(x)) + np.prod(np.fabs(x))
 
 
-# [(-100,100)] * 30
+# [(-100,100)] * 30    4min13s
 def fun_3(x):
     p = 0
     for i in range(len(x)):
@@ -31,13 +31,13 @@ def fun_3(x):
     pass
 
 
-# [-100, 100] * 30   16s   10^-7
+# [-100, 100] * 30   1min29s   10^-7
 def fun_4(x):
-    return np.max(np.fabs(x))
+    return max(np.fabs(x))
     pass
 
 
-# [-30, 30] * 30     30s   10^1
+# [-30, 30] * 30     1min36s 0.66
 def fun_5(x):
     p1 = 0
     for i in range(len(x) - 1):
@@ -53,14 +53,14 @@ def fun_6(x):
     pass
 
 
-# [-1.28, 1.28] * 30  20s  0.8  ############################
+# [-1.28, 1.28] * 30
 def fun_7(x):
     p1 = np.arange(len(x)) + 1.0
     return sum(p1 * x ** 4) + np.random.rand()
     pass
 
 
-# [-500, 500] * 30    18s  10^-3          ####################################
+# [-500, 500] * 30    18s  10^-3
 def fun_8(x):
     p1 = sum(x * np.sin(np.sqrt(np.fabs(x))))
     return 418.98288727243369 * len(x) - p1
@@ -80,7 +80,7 @@ def fun_10(x):
     pass
 
 
-# [-600, 600] * 30   19s  0.0       ###########################
+# [-600, 600] * 30   19s  0.0
 def fun_11(x):
     p1 = np.sqrt(np.arange(len(x)) + 1.0)
     return np.sum(x ** 2) / 4000.0 - np.prod(np.cos(x / p1)) + 1.0
@@ -148,7 +148,7 @@ def fun_branin(x):
 
 def fun_goldstein_price(x):
     return (1 + ((x[0] + x[1] + 1) ** 2) * (19 - 14 * x[0] + 3 * x[0] ** 2 - 14 * x[1] + 6 * x[0] * x[1] + 3 * x[1] ** 2)) * (
-            30 + ((2 * x[0] - 3 * x[1]) ** 2) * (18 - 32 * x[0] + 12 * x[0] ** 2 + 48 * x[1] - 36 * x[0] * x[1] + 27 * x[1] ** 2))
+                30 + ((2 * x[0] - 3 * x[1]) ** 2) * (18 - 32 * x[0] + 12 * x[0] ** 2 + 48 * x[1] - 36 * x[0] * x[1] + 27 * x[1] ** 2))
 
 
 # [(0, 1)] * 3
@@ -272,7 +272,7 @@ def fun_shekel10(x):
     pass
 
 
-def jade(fobj, bounds, popsize=20, its=1000, c=0.1):
+def jade_a(fobj, bounds, popsize=100, its=1000, c=0.1):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -344,9 +344,74 @@ def jade(fobj, bounds, popsize=20, its=1000, c=0.1):
         yield best, fitness_best
 
 
-def jade_test(fun, bounds, its=1000, log=1):
+def jade_without_a(fobj, bounds, popsize=100, its=1000, c=0.1):
+    dimensions = len(bounds)
+    pop = np.random.rand(popsize, dimensions)
+    min_b, max_b = np.asarray(bounds).T
+    diff = np.fabs(min_b - max_b)
+    population = min_b + pop * diff
+    population_new = np.random.rand(popsize, dimensions)
+    for i in range(len(population_new)):
+        population_new[i] = population[i]
+        pass
+    mean_cr = 0.5
+    mean_mut = 0.5
+    for i in range(its):
+        s_mut = []
+        s_cr = []  # 存储成功的cr值，每代清空
+        population = list(population)
+        population.sort(key=fobj)
+        population = np.array(population)
+        best = population[0]
+        fitness_best = fobj(best)
+        fitness = np.asarray([fobj(ind) for ind in population])
+        for j in range(popsize):
+            p = 0.05 * popsize
+            idx_x_best_p = random.randint(0, int(p))
+            x_best_p = population[idx_x_best_p]
+            idxs = [idx for idx in range(popsize) if idx != j]
+            x_r1, x_r2 = population[np.random.choice(idxs, 2, replace=False)]
+            mut = cauchy.rvs(loc=mean_mut, scale=0.1)
+            while mut < 0 or mut > 1:
+                if mut < 0:
+                    mut = cauchy.rvs(loc=mean_mut, scale=0.1)
+                else:
+                    mut = 1
+            mutant = population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2)
+            for mutant_i in range(len(mutant)):
+                if mutant[mutant_i] < min_b[mutant_i]:
+                    mutant[mutant_i] = (population[j][mutant_i] + min_b[mutant_i]) / 2
+                    pass
+                elif mutant[mutant_i] > max_b[mutant_i]:
+                    mutant[mutant_i] = (population[j][mutant_i] + max_b[mutant_i]) / 2
+                    pass
+                pass
+            cr = random.gauss(mean_cr, 0.1)
+            cross_points = np.random.rand(dimensions) < cr
+            if not np.any(cross_points):
+                cross_points[np.random.randint(0, dimensions)] = True
+            trial = np.where(cross_points, mutant, population[j])
+            fit = fobj(trial)
+            if fit < fitness[j]:
+                population_new[j] = trial
+                s_cr.append(cr)
+                s_mut.append(mut)
+            else:
+                population_new[j] = population[j]
+        for k in range(len(population_new)):
+            population[k] = population_new[k]
+            pass
+        if s_cr:
+            mean_cr = (1 - c) * mean_cr + c * np.mean(s_cr)
+            mean_mut = (1 - c) * mean_mut + c * (sum(ff ** 2 for ff in s_mut) / sum(s_mut))
+        yield best, fitness_best
+        pass
+    pass
+
+
+def jade_a_test(fun, bounds, its=1000, log=1):
     start = datetime.datetime.now()
-    it = list(jade(fun, bounds, popsize=100, its=its))
+    it = list(jade_a(fun, bounds, popsize=100, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -359,10 +424,41 @@ def jade_test(fun, bounds, its=1000, log=1):
     pass
 
 
-def jade_test_20(fun, bounds, its):
+def jade_without_a_test(fun, bounds, its=1000, log=1):
+    start = datetime.datetime.now()
+    it = list(jade_without_a(fun, bounds, popsize=100, its=its))
+    print(it[-1])
+    end = datetime.datetime.now()
+    print(end - start)
+    x, f = zip(*it)
+    plt.plot(f, label='jade')
+    if log == 1:
+        plt.yscale('log')
+    plt.legend()
+    plt.show()
+    pass
+
+
+def jade_a_test_20(fun, bounds, its):
     result = []
     for num in range(50):
-        it = list(jade(fun, bounds, popsize=100, its=its))
+        it = list(jade_a(fun, bounds, popsize=100, its=its))
+        result.append(it[-1][-1])
+        print(num, result[-1])
+        pass
+    data = pd.DataFrame([['JADE', fun.__name__, its, i] for i in result])
+    data.to_csv('data.csv', mode='a', header=False)
+    mean_result = np.mean(result)
+    std_result = np.std(result)
+    data_mean = pd.DataFrame([['JADE', fun.__name__, its, mean_result, std_result]])
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
+    pass
+
+
+def jade_without_a_test_20(fun, bounds, its):
+    result = []
+    for num in range(50):
+        it = list(jade_without_a(fun, bounds, popsize=100, its=its))
         result.append(it[-1][-1])
         print(num, result[-1])
         pass
@@ -396,7 +492,8 @@ dic1 = {
     19: {1: fun_shekel7, 2: [(0, 10)] * 4, 3: 200},
     20: {1: fun_shekel10, 2: [(0, 10)] * 4, 3: 200}
 }
-for test_index in range(14, 15):
-    jade_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
-    pass
-# jade_test(fun_shekel5, [(0, 10)] * 4, its=200, log=0)
+# for test_index in range(14, 15):
+#     jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
+#     pass
+
+jade_without_a_test(fun_4, [(-30, 30)] * 30, its=3000, log=1)
