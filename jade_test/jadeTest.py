@@ -320,8 +320,7 @@ def jade_a(fobj, bounds, popsize=100, its=1000, c=0.1):
                 pass
             cr = random.gauss(mean_cr, 0.1)
             cross_points = np.random.rand(dimensions) < cr
-            if not np.any(cross_points):
-                cross_points[np.random.randint(0, dimensions)] = True
+            cross_points[np.random.randint(0, dimensions)] = True
             trial = np.where(cross_points, mutant, population[j])
             fit = fobj(trial)
             if fit < fitness[j]:
@@ -342,6 +341,8 @@ def jade_a(fobj, bounds, popsize=100, its=1000, c=0.1):
             mean_cr = (1 - c) * mean_cr + c * np.mean(s_cr)
             mean_mut = (1 - c) * mean_mut + c * (sum(ff ** 2 for ff in s_mut) / sum(s_mut))
         yield best, fitness_best
+        pass
+    pass
 
 
 def jade_without_a(fobj, bounds, popsize=100, its=1000, c=0.1):
@@ -496,4 +497,4 @@ dic1 = {
 #     jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
 #     pass
 
-jade_without_a_test(fun_4, [(-30, 30)] * 30, its=3000, log=1)
+jade_a_test(fun_4, [(-100, 100)] * 30, its=5000, log=1)

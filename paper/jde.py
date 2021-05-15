@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import datetime
 
 
-def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=20, its=1000, goal=0):
+def jde(fobj, bounds, mut=0.5, cr=0.9, popsize=20, its=1000):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -33,15 +33,12 @@ def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=20, its=1000, goal=0):
                 if f < fitness[best_idx]:
                     best_idx = j
                     best = trial
-        if np.fabs(min(fitness) - goal) < 1e-8:
-            print(i)
-            break
         yield best, fitness[best_idx]
 
 
-def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, goal=0, log=0):
+def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, log=0):
     start = datetime.datetime.now()
-    it = list(jde(fun, bounds, mut=mut, cr=cr, popsize=100, its=its, goal=goal))
+    it = list(jde(fun, bounds, mut=mut, cr=cr, popsize=100, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -50,6 +47,5 @@ def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, goal=0, log=0):
     if log == 1:
         plt.yscale('log')
     plt.legend()
-    # plt.savefig('rastrigin with jde')
     plt.show()
     pass
