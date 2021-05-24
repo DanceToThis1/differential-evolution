@@ -359,56 +359,56 @@ index,algorithm,fun_index,its,result
 47,JADE,fun_goldstein_price,200,2.999999999999922
 48,JADE,fun_goldstein_price,200,2.999999999999919
 49,JADE,fun_goldstein_price,200,2.999999999999922
-0,JADE,fun_hartman3,200,-3.8628294555678493
-1,JADE,fun_hartman3,200,-3.8628294555678493
-2,JADE,fun_hartman3,200,-3.8628294555678493
-3,JADE,fun_hartman3,200,-3.8628294555678493
-4,JADE,fun_hartman3,200,-3.8628294555678493
-5,JADE,fun_hartman3,200,-3.8628294555678493
-6,JADE,fun_hartman3,200,-3.8628294555678493
-7,JADE,fun_hartman3,200,-3.8628294555678493
-8,JADE,fun_hartman3,200,-3.8628294555678493
-9,JADE,fun_hartman3,200,-3.8628294555678493
-10,JADE,fun_hartman3,200,-3.8628294555678493
-11,JADE,fun_hartman3,200,-3.8628294555678493
-12,JADE,fun_hartman3,200,-3.8628294555678493
-13,JADE,fun_hartman3,200,-3.8628294555678493
-14,JADE,fun_hartman3,200,-3.8628294555678493
-15,JADE,fun_hartman3,200,-3.8628294555678493
-16,JADE,fun_hartman3,200,-3.8628294555678493
-17,JADE,fun_hartman3,200,-3.8628294555678493
-18,JADE,fun_hartman3,200,-3.8628294555678493
-19,JADE,fun_hartman3,200,-3.8628294555678493
-20,JADE,fun_hartman3,200,-3.8628294555678493
-21,JADE,fun_hartman3,200,-3.8628294555678493
-22,JADE,fun_hartman3,200,-3.8628294555678493
-23,JADE,fun_hartman3,200,-3.8628294555678493
-24,JADE,fun_hartman3,200,-3.8628294555678493
-25,JADE,fun_hartman3,200,-3.8628294555678493
-26,JADE,fun_hartman3,200,-3.8628294555678493
-27,JADE,fun_hartman3,200,-3.8628294555678493
-28,JADE,fun_hartman3,200,-3.8628294555678493
-29,JADE,fun_hartman3,200,-3.8628294555678493
-30,JADE,fun_hartman3,200,-3.8628294555678493
-31,JADE,fun_hartman3,200,-3.8628294555678493
-32,JADE,fun_hartman3,200,-3.8628294555678493
-33,JADE,fun_hartman3,200,-3.8628294555678493
-34,JADE,fun_hartman3,200,-3.8628294555678493
-35,JADE,fun_hartman3,200,-3.8628294555678493
-36,JADE,fun_hartman3,200,-3.8628294555678493
-37,JADE,fun_hartman3,200,-3.8628294555678493
-38,JADE,fun_hartman3,200,-3.8628294555678493
-39,JADE,fun_hartman3,200,-3.8628294555678493
-40,JADE,fun_hartman3,200,-3.8628294555678493
-41,JADE,fun_hartman3,200,-3.8628294555678493
-42,JADE,fun_hartman3,200,-3.8628294555678493
-43,JADE,fun_hartman3,200,-3.8628294555678493
-44,JADE,fun_hartman3,200,-3.8628294555678493
-45,JADE,fun_hartman3,200,-3.8628294555678493
-46,JADE,fun_hartman3,200,-3.8628294555678493
-47,JADE,fun_hartman3,200,-3.8628294555678493
-48,JADE,fun_hartman3,200,-3.8628294555678493
-49,JADE,fun_hartman3,200,-3.8628294555678493
+0,JADE,fun_hartman3,200,-3.862779787332663
+1,JADE,fun_hartman3,200,-3.862779787332663
+2,JADE,fun_hartman3,200,-3.862779787332663
+3,JADE,fun_hartman3,200,-3.862779787332663
+4,JADE,fun_hartman3,200,-3.862779787332663
+5,JADE,fun_hartman3,200,-3.862779787332663
+6,JADE,fun_hartman3,200,-3.862779787332663
+7,JADE,fun_hartman3,200,-3.862779787332663
+8,JADE,fun_hartman3,200,-3.862779787332663
+9,JADE,fun_hartman3,200,-3.862779787332663
+10,JADE,fun_hartman3,200,-3.862779787332663
+11,JADE,fun_hartman3,200,-3.862779787332663
+12,JADE,fun_hartman3,200,-3.862779787332663
+13,JADE,fun_hartman3,200,-3.862779787332663
+14,JADE,fun_hartman3,200,-3.862779787332663
+15,JADE,fun_hartman3,200,-3.862779787332663
+16,JADE,fun_hartman3,200,-3.862779787332663
+17,JADE,fun_hartman3,200,-3.862779787332663
+18,JADE,fun_hartman3,200,-3.862779787332663
+19,JADE,fun_hartman3,200,-3.862779787332663
+20,JADE,fun_hartman3,200,-3.862779787332663
+21,JADE,fun_hartman3,200,-3.862779787332663
+22,JADE,fun_hartman3,200,-3.862779787332663
+23,JADE,fun_hartman3,200,-3.862779787332663
+24,JADE,fun_hartman3,200,-3.862779787332663
+25,JADE,fun_hartman3,200,-3.862779787332663
+26,JADE,fun_hartman3,200,-3.862779787332663
+27,JADE,fun_hartman3,200,-3.862779787332663
+28,JADE,fun_hartman3,200,-3.862779787332663
+29,JADE,fun_hartman3,200,-3.862779787332663
+30,JADE,fun_hartman3,200,-3.862779787332663
+31,JADE,fun_hartman3,200,-3.862779787332663
+32,JADE,fun_hartman3,200,-3.862779787332663
+33,JADE,fun_hartman3,200,-3.862779787332663
+34,JADE,fun_hartman3,200,-3.862779787332663
+35,JADE,fun_hartman3,200,-3.862779787332663
+36,JADE,fun_hartman3,200,-3.862779787332663
+37,JADE,fun_hartman3,200,-3.862779787332663
+38,JADE,fun_hartman3,200,-3.862779787332663
+39,JADE,fun_hartman3,200,-3.862779787332663
+40,JADE,fun_hartman3,200,-3.862779787332663
+41,JADE,fun_hartman3,200,-3.862779787332663
+42,JADE,fun_hartman3,200,-3.862779787332663
+43,JADE,fun_hartman3,200,-3.862779787332663
+44,JADE,fun_hartman3,200,-3.862779787332663
+45,JADE,fun_hartman3,200,-3.862779787332663
+46,JADE,fun_hartman3,200,-3.862779787332663
+47,JADE,fun_hartman3,200,-3.862779787332663
+48,JADE,fun_hartman3,200,-3.862779787332663
+49,JADE,fun_hartman3,200,-3.862779787332663
 0,JADE,fun_hartman6,200,-3.322368011415469
 1,JADE,fun_hartman6,200,-3.32236399104136
 2,JADE,fun_hartman6,200,-3.3223680112085634
@@ -609,3 +609,353 @@ index,algorithm,fun_index,its,result
 47,JADE,fun_shekel10,200,-10.536443153483273
 48,JADE,fun_shekel10,200,-10.536443153483454
 49,JADE,fun_shekel10,200,-10.536443153483523
+0,JADE without archive,fun_branin,200,0.3978873577302213
+1,JADE without archive,fun_branin,200,0.39788735772973816
+2,JADE without archive,fun_branin,200,0.39788735772973816
+3,JADE without archive,fun_branin,200,0.39788735772973816
+4,JADE without archive,fun_branin,200,0.39788735772973816
+5,JADE without archive,fun_branin,200,0.39788735772973816
+6,JADE without archive,fun_branin,200,0.3978873577297488
+7,JADE without archive,fun_branin,200,0.39788735772973816
+8,JADE without archive,fun_branin,200,0.39788735772973816
+9,JADE without archive,fun_branin,200,0.39788735772973816
+10,JADE without archive,fun_branin,200,0.39788735772973816
+11,JADE without archive,fun_branin,200,0.3978873577297719
+12,JADE without archive,fun_branin,200,0.39788735772973816
+13,JADE without archive,fun_branin,200,0.39788735772973816
+14,JADE without archive,fun_branin,200,0.39788735772973816
+15,JADE without archive,fun_branin,200,0.39788735848368084
+16,JADE without archive,fun_branin,200,0.39788735772973816
+17,JADE without archive,fun_branin,200,0.39788735772973993
+18,JADE without archive,fun_branin,200,0.39788735772973816
+19,JADE without archive,fun_branin,200,0.3978873577297488
+20,JADE without archive,fun_branin,200,0.39788735772973816
+21,JADE without archive,fun_branin,200,0.39788735772973816
+22,JADE without archive,fun_branin,200,0.397887357730486
+23,JADE without archive,fun_branin,200,0.39788735772973816
+24,JADE without archive,fun_branin,200,0.39788735772973816
+25,JADE without archive,fun_branin,200,0.39788735772973816
+26,JADE without archive,fun_branin,200,0.39788735772973816
+27,JADE without archive,fun_branin,200,0.3978873577297488
+28,JADE without archive,fun_branin,200,0.39788735772973816
+29,JADE without archive,fun_branin,200,0.39788735772973816
+30,JADE without archive,fun_branin,200,0.39788735772973816
+31,JADE without archive,fun_branin,200,0.39788735772973816
+32,JADE without archive,fun_branin,200,0.39788735772973816
+33,JADE without archive,fun_branin,200,0.39788735772973816
+34,JADE without archive,fun_branin,200,0.39788735772973816
+35,JADE without archive,fun_branin,200,0.3978873577297417
+36,JADE without archive,fun_branin,200,0.39788735772973816
+37,JADE without archive,fun_branin,200,0.39788735772973816
+38,JADE without archive,fun_branin,200,0.39788735773495887
+39,JADE without archive,fun_branin,200,0.39788735772973816
+40,JADE without archive,fun_branin,200,0.3978873577298039
+41,JADE without archive,fun_branin,200,0.39788735772973816
+42,JADE without archive,fun_branin,200,0.39788735772973993
+43,JADE without archive,fun_branin,200,0.39788735772973816
+44,JADE without archive,fun_branin,200,0.39788735772973816
+45,JADE without archive,fun_branin,200,0.39788735772974704
+46,JADE without archive,fun_branin,200,0.39788735772973816
+47,JADE without archive,fun_branin,200,0.39788735772973816
+48,JADE without archive,fun_branin,200,0.39788735772973816
+49,JADE without archive,fun_branin,200,0.39788735772974526
+0,JADE without archive,fun_goldstein_price,200,2.999999999999922
+1,JADE without archive,fun_goldstein_price,200,2.999999999999922
+2,JADE without archive,fun_goldstein_price,200,2.999999999999922
+3,JADE without archive,fun_goldstein_price,200,2.999999999999922
+4,JADE without archive,fun_goldstein_price,200,2.999999999999922
+5,JADE without archive,fun_goldstein_price,200,2.9999999999999196
+6,JADE without archive,fun_goldstein_price,200,2.999999999999922
+7,JADE without archive,fun_goldstein_price,200,2.999999999999922
+8,JADE without archive,fun_goldstein_price,200,2.999999999999921
+9,JADE without archive,fun_goldstein_price,200,2.9999999999999205
+10,JADE without archive,fun_goldstein_price,200,2.999999999999922
+11,JADE without archive,fun_goldstein_price,200,2.999999999999922
+12,JADE without archive,fun_goldstein_price,200,2.999999999999922
+13,JADE without archive,fun_goldstein_price,200,2.9999999999999205
+14,JADE without archive,fun_goldstein_price,200,2.999999999999922
+15,JADE without archive,fun_goldstein_price,200,2.999999999999922
+16,JADE without archive,fun_goldstein_price,200,2.999999999999922
+17,JADE without archive,fun_goldstein_price,200,2.999999999999922
+18,JADE without archive,fun_goldstein_price,200,2.999999999999922
+19,JADE without archive,fun_goldstein_price,200,2.999999999999922
+20,JADE without archive,fun_goldstein_price,200,2.999999999999922
+21,JADE without archive,fun_goldstein_price,200,2.999999999999922
+22,JADE without archive,fun_goldstein_price,200,2.999999999999922
+23,JADE without archive,fun_goldstein_price,200,2.999999999999922
+24,JADE without archive,fun_goldstein_price,200,2.999999999999921
+25,JADE without archive,fun_goldstein_price,200,2.9999999999999205
+26,JADE without archive,fun_goldstein_price,200,2.999999999999922
+27,JADE without archive,fun_goldstein_price,200,2.999999999999922
+28,JADE without archive,fun_goldstein_price,200,2.999999999999922
+29,JADE without archive,fun_goldstein_price,200,2.9999999999999205
+30,JADE without archive,fun_goldstein_price,200,2.999999999999921
+31,JADE without archive,fun_goldstein_price,200,2.999999999999922
+32,JADE without archive,fun_goldstein_price,200,2.9999999999999196
+33,JADE without archive,fun_goldstein_price,200,2.999999999999922
+34,JADE without archive,fun_goldstein_price,200,2.999999999999922
+35,JADE without archive,fun_goldstein_price,200,2.999999999999922
+36,JADE without archive,fun_goldstein_price,200,2.999999999999922
+37,JADE without archive,fun_goldstein_price,200,2.9999999999999205
+38,JADE without archive,fun_goldstein_price,200,2.999999999999922
+39,JADE without archive,fun_goldstein_price,200,2.999999999999922
+40,JADE without archive,fun_goldstein_price,200,2.999999999999922
+41,JADE without archive,fun_goldstein_price,200,2.999999999999922
+42,JADE without archive,fun_goldstein_price,200,2.999999999999922
+43,JADE without archive,fun_goldstein_price,200,2.999999999999922
+44,JADE without archive,fun_goldstein_price,200,2.999999999999922
+45,JADE without archive,fun_goldstein_price,200,2.999999999999922
+46,JADE without archive,fun_goldstein_price,200,2.999999999999922
+47,JADE without archive,fun_goldstein_price,200,2.999999999999921
+48,JADE without archive,fun_goldstein_price,200,2.9999999999999205
+49,JADE without archive,fun_goldstein_price,200,2.9999999999999205
+0,JADE without archive,fun_hartman3,200,-3.862779787332663
+1,JADE without archive,fun_hartman3,200,-3.862779787332663
+2,JADE without archive,fun_hartman3,200,-3.862779787332663
+3,JADE without archive,fun_hartman3,200,-3.862779787332663
+4,JADE without archive,fun_hartman3,200,-3.862779787332663
+5,JADE without archive,fun_hartman3,200,-3.862779787332663
+6,JADE without archive,fun_hartman3,200,-3.862779787332663
+7,JADE without archive,fun_hartman3,200,-3.862779787332663
+8,JADE without archive,fun_hartman3,200,-3.862779787332663
+9,JADE without archive,fun_hartman3,200,-3.862779787332663
+10,JADE without archive,fun_hartman3,200,-3.862779787332663
+11,JADE without archive,fun_hartman3,200,-3.862779787332663
+12,JADE without archive,fun_hartman3,200,-3.862779787332663
+13,JADE without archive,fun_hartman3,200,-3.862779787332663
+14,JADE without archive,fun_hartman3,200,-3.862779787332663
+15,JADE without archive,fun_hartman3,200,-3.862779787332663
+16,JADE without archive,fun_hartman3,200,-3.862779787332663
+17,JADE without archive,fun_hartman3,200,-3.862779787332663
+18,JADE without archive,fun_hartman3,200,-3.862779787332663
+19,JADE without archive,fun_hartman3,200,-3.862779787332663
+20,JADE without archive,fun_hartman3,200,-3.862779787332663
+21,JADE without archive,fun_hartman3,200,-3.862779787332663
+22,JADE without archive,fun_hartman3,200,-3.862779787332663
+23,JADE without archive,fun_hartman3,200,-3.862779787332663
+24,JADE without archive,fun_hartman3,200,-3.862779787332663
+25,JADE without archive,fun_hartman3,200,-3.862779787332663
+26,JADE without archive,fun_hartman3,200,-3.862779787332663
+27,JADE without archive,fun_hartman3,200,-3.862779787332663
+28,JADE without archive,fun_hartman3,200,-3.862779787332663
+29,JADE without archive,fun_hartman3,200,-3.862779787332663
+30,JADE without archive,fun_hartman3,200,-3.862779787332663
+31,JADE without archive,fun_hartman3,200,-3.862779787332663
+32,JADE without archive,fun_hartman3,200,-3.862779787332663
+33,JADE without archive,fun_hartman3,200,-3.862779787332663
+34,JADE without archive,fun_hartman3,200,-3.862779787332663
+35,JADE without archive,fun_hartman3,200,-3.862779787332663
+36,JADE without archive,fun_hartman3,200,-3.862779787332663
+37,JADE without archive,fun_hartman3,200,-3.862779787332663
+38,JADE without archive,fun_hartman3,200,-3.862779787332663
+39,JADE without archive,fun_hartman3,200,-3.862779787332663
+40,JADE without archive,fun_hartman3,200,-3.862779787332663
+41,JADE without archive,fun_hartman3,200,-3.862779787332663
+42,JADE without archive,fun_hartman3,200,-3.862779787332663
+43,JADE without archive,fun_hartman3,200,-3.862779787332663
+44,JADE without archive,fun_hartman3,200,-3.862779787332663
+45,JADE without archive,fun_hartman3,200,-3.862779787332663
+46,JADE without archive,fun_hartman3,200,-3.862779787332663
+47,JADE without archive,fun_hartman3,200,-3.862779787332663
+48,JADE without archive,fun_hartman3,200,-3.862779787332663
+49,JADE without archive,fun_hartman3,200,-3.862779787332663
+0,JADE without archive,fun_hartman6,200,-3.3223680114155143
+1,JADE without archive,fun_hartman6,200,-3.3223680114155143
+2,JADE without archive,fun_hartman6,200,-3.322368011415502
+3,JADE without archive,fun_hartman6,200,-3.2031619183962206
+4,JADE without archive,fun_hartman6,200,-3.322368011395432
+5,JADE without archive,fun_hartman6,200,-3.3223623338343398
+6,JADE without archive,fun_hartman6,200,-3.322368011415514
+7,JADE without archive,fun_hartman6,200,-3.322368011415139
+8,JADE without archive,fun_hartman6,200,-3.3223680113902168
+9,JADE without archive,fun_hartman6,200,-3.322368011415514
+10,JADE without archive,fun_hartman6,200,-3.3223668797511645
+11,JADE without archive,fun_hartman6,200,-3.3223680073316166
+12,JADE without archive,fun_hartman6,200,-3.3223680114155147
+13,JADE without archive,fun_hartman6,200,-3.3223519922860043
+14,JADE without archive,fun_hartman6,200,-3.322368011415505
+15,JADE without archive,fun_hartman6,200,-3.322368011414633
+16,JADE without archive,fun_hartman6,200,-3.322368011415512
+17,JADE without archive,fun_hartman6,200,-3.322367609172986
+18,JADE without archive,fun_hartman6,200,-3.322368011413952
+19,JADE without archive,fun_hartman6,200,-3.3223679500278838
+20,JADE without archive,fun_hartman6,200,-3.203161918396228
+21,JADE without archive,fun_hartman6,200,-3.3223676002165634
+22,JADE without archive,fun_hartman6,200,-3.3223658947281085
+23,JADE without archive,fun_hartman6,200,-3.3223624649502024
+24,JADE without archive,fun_hartman6,200,-3.3223680114150356
+25,JADE without archive,fun_hartman6,200,-3.3223680114154948
+26,JADE without archive,fun_hartman6,200,-3.322361575715474
+27,JADE without archive,fun_hartman6,200,-3.3223680114155143
+28,JADE without archive,fun_hartman6,200,-3.3223680114155125
+29,JADE without archive,fun_hartman6,200,-3.3223680114155147
+30,JADE without archive,fun_hartman6,200,-3.3223680114154983
+31,JADE without archive,fun_hartman6,200,-3.203161918396201
+32,JADE without archive,fun_hartman6,200,-3.3223639000252434
+33,JADE without archive,fun_hartman6,200,-3.3223471620997347
+34,JADE without archive,fun_hartman6,200,-3.3223680114155147
+35,JADE without archive,fun_hartman6,200,-3.203161918396211
+36,JADE without archive,fun_hartman6,200,-3.3223680114155147
+37,JADE without archive,fun_hartman6,200,-3.3223680114154486
+38,JADE without archive,fun_hartman6,200,-3.3223680114155147
+39,JADE without archive,fun_hartman6,200,-3.322367974612633
+40,JADE without archive,fun_hartman6,200,-3.3223680114155143
+41,JADE without archive,fun_hartman6,200,-3.3223680114142473
+42,JADE without archive,fun_hartman6,200,-3.3223595072157837
+43,JADE without archive,fun_hartman6,200,-3.3223495621743173
+44,JADE without archive,fun_hartman6,200,-3.3223667848849887
+45,JADE without archive,fun_hartman6,200,-3.32236465672997
+46,JADE without archive,fun_hartman6,200,-3.3223680114155134
+47,JADE without archive,fun_hartman6,200,-3.3223680114154153
+48,JADE without archive,fun_hartman6,200,-3.3223680008452696
+49,JADE without archive,fun_hartman6,200,-3.322367702881937
+0,JADE without archive,fun_shekel5,200,-10.153199679058032
+1,JADE without archive,fun_shekel5,200,-10.153199678942201
+2,JADE without archive,fun_shekel5,200,-10.153199679058222
+3,JADE without archive,fun_shekel5,200,-10.15319967897275
+4,JADE without archive,fun_shekel5,200,-10.153199654503734
+5,JADE without archive,fun_shekel5,200,-10.153199666010822
+6,JADE without archive,fun_shekel5,200,-10.153199679058057
+7,JADE without archive,fun_shekel5,200,-10.153199679058224
+8,JADE without archive,fun_shekel5,200,-10.153199678988896
+9,JADE without archive,fun_shekel5,200,-10.15319967905183
+10,JADE without archive,fun_shekel5,200,-10.153199678303773
+11,JADE without archive,fun_shekel5,200,-10.153199679057186
+12,JADE without archive,fun_shekel5,200,-10.153199679032804
+13,JADE without archive,fun_shekel5,200,-10.15319967905821
+14,JADE without archive,fun_shekel5,200,-10.153199455354313
+15,JADE without archive,fun_shekel5,200,-10.15319891695021
+16,JADE without archive,fun_shekel5,200,-10.153199679058229
+17,JADE without archive,fun_shekel5,200,-10.153199609430867
+18,JADE without archive,fun_shekel5,200,-10.153199678812964
+19,JADE without archive,fun_shekel5,200,-10.153199679058229
+20,JADE without archive,fun_shekel5,200,-10.153199679058131
+21,JADE without archive,fun_shekel5,200,-10.153199676313427
+22,JADE without archive,fun_shekel5,200,-10.153199678937865
+23,JADE without archive,fun_shekel5,200,-10.153199679037444
+24,JADE without archive,fun_shekel5,200,-10.15319966629343
+25,JADE without archive,fun_shekel5,200,-10.153199677398636
+26,JADE without archive,fun_shekel5,200,-10.153199679053916
+27,JADE without archive,fun_shekel5,200,-10.153199679058067
+28,JADE without archive,fun_shekel5,200,-10.15319967389359
+29,JADE without archive,fun_shekel5,200,-10.15319967905807
+30,JADE without archive,fun_shekel5,200,-10.153199453502454
+31,JADE without archive,fun_shekel5,200,-10.153199679057565
+32,JADE without archive,fun_shekel5,200,-10.153199679058227
+33,JADE without archive,fun_shekel5,200,-10.153199679058227
+34,JADE without archive,fun_shekel5,200,-10.153199679039227
+35,JADE without archive,fun_shekel5,200,-10.15319967905753
+36,JADE without archive,fun_shekel5,200,-10.153199679057842
+37,JADE without archive,fun_shekel5,200,-10.153199679055707
+38,JADE without archive,fun_shekel5,200,-10.153199679046221
+39,JADE without archive,fun_shekel5,200,-10.153199679058224
+40,JADE without archive,fun_shekel5,200,-10.153199679055568
+41,JADE without archive,fun_shekel5,200,-10.153199677117309
+42,JADE without archive,fun_shekel5,200,-10.153199679058211
+43,JADE without archive,fun_shekel5,200,-10.153199679053085
+44,JADE without archive,fun_shekel5,200,-10.153199679058048
+45,JADE without archive,fun_shekel5,200,-10.15319967846836
+46,JADE without archive,fun_shekel5,200,-10.153199679052738
+47,JADE without archive,fun_shekel5,200,-10.153199679058226
+48,JADE without archive,fun_shekel5,200,-10.153199679058229
+49,JADE without archive,fun_shekel5,200,-10.15319967905676
+0,JADE without archive,fun_shekel7,200,-10.402915336777745
+1,JADE without archive,fun_shekel7,200,-10.40291533677772
+2,JADE without archive,fun_shekel7,200,-10.402915336777745
+3,JADE without archive,fun_shekel7,200,-10.40291533677774
+4,JADE without archive,fun_shekel7,200,-10.402915336777747
+5,JADE without archive,fun_shekel7,200,-10.402915336777745
+6,JADE without archive,fun_shekel7,200,-10.402915336777744
+7,JADE without archive,fun_shekel7,200,-10.402915336777731
+8,JADE without archive,fun_shekel7,200,-10.402915336777534
+9,JADE without archive,fun_shekel7,200,-10.402915336777745
+10,JADE without archive,fun_shekel7,200,-10.402915336777715
+11,JADE without archive,fun_shekel7,200,-10.402915336777719
+12,JADE without archive,fun_shekel7,200,-10.402915336777733
+13,JADE without archive,fun_shekel7,200,-10.402915336777745
+14,JADE without archive,fun_shekel7,200,-10.40291533677012
+15,JADE without archive,fun_shekel7,200,-10.402915336777742
+16,JADE without archive,fun_shekel7,200,-10.40291533677774
+17,JADE without archive,fun_shekel7,200,-10.402915336777195
+18,JADE without archive,fun_shekel7,200,-10.40291533677774
+19,JADE without archive,fun_shekel7,200,-10.402915336776138
+20,JADE without archive,fun_shekel7,200,-10.402915336777719
+21,JADE without archive,fun_shekel7,200,-10.402915336775715
+22,JADE without archive,fun_shekel7,200,-10.402915336777742
+23,JADE without archive,fun_shekel7,200,-10.402915336777745
+24,JADE without archive,fun_shekel7,200,-10.402915336777747
+25,JADE without archive,fun_shekel7,200,-10.402915336777744
+26,JADE without archive,fun_shekel7,200,-10.402915336777584
+27,JADE without archive,fun_shekel7,200,-10.402915336777745
+28,JADE without archive,fun_shekel7,200,-10.402915336777736
+29,JADE without archive,fun_shekel7,200,-10.402915336777745
+30,JADE without archive,fun_shekel7,200,-10.40291533677027
+31,JADE without archive,fun_shekel7,200,-10.402915336777745
+32,JADE without archive,fun_shekel7,200,-10.402915336777617
+33,JADE without archive,fun_shekel7,200,-10.402915336736902
+34,JADE without archive,fun_shekel7,200,-10.402915336777541
+35,JADE without archive,fun_shekel7,200,-10.402915336777744
+36,JADE without archive,fun_shekel7,200,-10.40291533677774
+37,JADE without archive,fun_shekel7,200,-10.402915336777745
+38,JADE without archive,fun_shekel7,200,-10.402915336777742
+39,JADE without archive,fun_shekel7,200,-10.402915336777744
+40,JADE without archive,fun_shekel7,200,-10.402915336777736
+41,JADE without archive,fun_shekel7,200,-10.402915336777745
+42,JADE without archive,fun_shekel7,200,-10.402915336765416
+43,JADE without archive,fun_shekel7,200,-10.40291533677772
+44,JADE without archive,fun_shekel7,200,-10.402915336777745
+45,JADE without archive,fun_shekel7,200,-10.402915336777745
+46,JADE without archive,fun_shekel7,200,-10.402915336777745
+47,JADE without archive,fun_shekel7,200,-10.402915336777738
+48,JADE without archive,fun_shekel7,200,-10.402915336750567
+49,JADE without archive,fun_shekel7,200,-10.402915336777726
+0,JADE without archive,fun_shekel10,200,-10.536443153483528
+1,JADE without archive,fun_shekel10,200,-10.536443153483523
+2,JADE without archive,fun_shekel10,200,-10.536443153483518
+3,JADE without archive,fun_shekel10,200,-10.536443153483448
+4,JADE without archive,fun_shekel10,200,-10.536443153482894
+5,JADE without archive,fun_shekel10,200,-10.536443153483512
+6,JADE without archive,fun_shekel10,200,-10.53644315348353
+7,JADE without archive,fun_shekel10,200,-10.536443153483525
+8,JADE without archive,fun_shekel10,200,-10.536443153483525
+9,JADE without archive,fun_shekel10,200,-10.536443153483505
+10,JADE without archive,fun_shekel10,200,-10.536443153483523
+11,JADE without archive,fun_shekel10,200,-10.536443153483345
+12,JADE without archive,fun_shekel10,200,-10.536443153483523
+13,JADE without archive,fun_shekel10,200,-10.536443153483527
+14,JADE without archive,fun_shekel10,200,-10.536443153482237
+15,JADE without archive,fun_shekel10,200,-10.536443153483514
+16,JADE without archive,fun_shekel10,200,-10.536443153483305
+17,JADE without archive,fun_shekel10,200,-10.536443153483523
+18,JADE without archive,fun_shekel10,200,-10.53644315348349
+19,JADE without archive,fun_shekel10,200,-10.536443153483516
+20,JADE without archive,fun_shekel10,200,-10.536443153483205
+21,JADE without archive,fun_shekel10,200,-10.536443153483518
+22,JADE without archive,fun_shekel10,200,-10.536443153483505
+23,JADE without archive,fun_shekel10,200,-10.536443153483527
+24,JADE without archive,fun_shekel10,200,-10.536443153479683
+25,JADE without archive,fun_shekel10,200,-10.53644315348353
+26,JADE without archive,fun_shekel10,200,-10.536443153483505
+27,JADE without archive,fun_shekel10,200,-10.536443153483527
+28,JADE without archive,fun_shekel10,200,-10.536443153483527
+29,JADE without archive,fun_shekel10,200,-10.536443153483528
+30,JADE without archive,fun_shekel10,200,-10.536443153483528
+31,JADE without archive,fun_shekel10,200,-10.53644315348351
+32,JADE without archive,fun_shekel10,200,-10.536443153483523
+33,JADE without archive,fun_shekel10,200,-10.536443153483418
+34,JADE without archive,fun_shekel10,200,-10.536443153482399
+35,JADE without archive,fun_shekel10,200,-10.536443153483518
+36,JADE without archive,fun_shekel10,200,-10.536443153483289
+37,JADE without archive,fun_shekel10,200,-10.536443153483354
+38,JADE without archive,fun_shekel10,200,-10.53644315348353
+39,JADE without archive,fun_shekel10,200,-10.536443153483129
+40,JADE without archive,fun_shekel10,200,-10.536443153478972
+41,JADE without archive,fun_shekel10,200,-10.536443153483525
+42,JADE without archive,fun_shekel10,200,-10.5364431534828
+43,JADE without archive,fun_shekel10,200,-10.536443153483525
+44,JADE without archive,fun_shekel10,200,-10.53644315348353
+45,JADE without archive,fun_shekel10,200,-10.536443153483518
+46,JADE without archive,fun_shekel10,200,-10.5364431534835
+47,JADE without archive,fun_shekel10,200,-10.536443153483509
+48,JADE without archive,fun_shekel10,200,-10.536443153483521
+49,JADE without archive,fun_shekel10,200,-10.536443153483432

@@ -1,4 +1,5 @@
 import datetime
+import math
 import numpy as np
 import random
 from scipy.stats import cauchy
@@ -8,13 +9,13 @@ import pandas as pd
 
 # [-100, 100] * 30
 def fun_1(x):
-    return np.sum(x ** 2)
+    return math.fsum(x ** 2)
     pass
 
 
 # [-10, 10] * 30
 def fun_2(x):
-    return np.sum(np.fabs(x)) + np.prod(np.fabs(x))
+    return math.fsum(np.fabs(x)) + math.prod(np.fabs(x))
 
 
 # [(-100,100)] * 30    4min13s
@@ -162,7 +163,7 @@ def fun_hartman3(x):
     ]
     p = [
         [3689, 1170, 2673],
-        [4689, 4387, 7470],
+        [4699, 4387, 7470],
         [1091, 8732, 5547],
         [381, 5743, 8828]
     ]
@@ -463,11 +464,11 @@ def jade_without_a_test_20(fun, bounds, its):
         result.append(it[-1][-1])
         print(num, result[-1])
         pass
-    data = pd.DataFrame([['JADE', fun.__name__, its, i] for i in result])
+    data = pd.DataFrame([['JADE without archive', fun.__name__, its, i] for i in result])
     data.to_csv('data.csv', mode='a', header=False)
     mean_result = np.mean(result)
     std_result = np.std(result)
-    data_mean = pd.DataFrame([['JADE', fun.__name__, its, mean_result, std_result]])
+    data_mean = pd.DataFrame([['JADE without archive', fun.__name__, its, mean_result, std_result]])
     data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
 
 
@@ -493,8 +494,8 @@ dic1 = {
     19: {1: fun_shekel7, 2: [(0, 10)] * 4, 3: 200},
     20: {1: fun_shekel10, 2: [(0, 10)] * 4, 3: 200}
 }
-# for test_index in range(14, 15):
-#     jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
-#     pass
+for test_index in range(16, 17):
+    jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
+    pass
 
-jade_a_test(fun_4, [(-100, 100)] * 30, its=5000, log=1)
+# jade_without_a_test(fun_hartman3, [(0, 1)] * 3, its=200, log=0)
