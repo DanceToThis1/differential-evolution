@@ -75,9 +75,9 @@ def fun_9(x):
 
 # [-32, 32] * 30      21s 10^-15
 def fun_10(x):
-    p1 = -0.2 * np.sqrt(sum(x ** 2) / len(x))
+    p1 = -0.2 * np.sqrt(np.sum(x ** 2) / len(x))
     p2 = np.sum(np.cos(2 * np.pi * x)) / len(x)
-    return np.exp(1) + 20 - 20 * np.exp(p1) - np.exp(p2)
+    return 20 - 20 * math.exp(p1) + math.exp(1) - math.exp(p2)
     pass
 
 
@@ -149,7 +149,7 @@ def fun_branin(x):
 
 def fun_goldstein_price(x):
     return (1 + ((x[0] + x[1] + 1) ** 2) * (19 - 14 * x[0] + 3 * x[0] ** 2 - 14 * x[1] + 6 * x[0] * x[1] + 3 * x[1] ** 2)) * (
-                30 + ((2 * x[0] - 3 * x[1]) ** 2) * (18 - 32 * x[0] + 12 * x[0] ** 2 + 48 * x[1] - 36 * x[0] * x[1] + 27 * x[1] ** 2))
+            30 + ((2 * x[0] - 3 * x[1]) ** 2) * (18 - 32 * x[0] + 12 * x[0] ** 2 + 48 * x[1] - 36 * x[0] * x[1] + 27 * x[1] ** 2))
 
 
 # [(0, 1)] * 3
@@ -494,8 +494,9 @@ dic1 = {
     19: {1: fun_shekel7, 2: [(0, 10)] * 4, 3: 200},
     20: {1: fun_shekel10, 2: [(0, 10)] * 4, 3: 200}
 }
-for test_index in range(16, 17):
-    jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
-    pass
+# for test_index in range(16, 17):
+#     jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
+#     pass
+#
+jade_without_a_test(fun_10, [(-32, 32)] * 2, its=200, log=1)
 
-# jade_without_a_test(fun_hartman3, [(0, 1)] * 3, its=200, log=0)

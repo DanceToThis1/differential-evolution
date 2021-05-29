@@ -55,10 +55,17 @@ def shade(fobj, bounds, popsize=20, its=1000, h=100):
             idx_x_r2 = random.randint(0, len(population) + len(a) - 3)
             if idx_x_r2 >= (len(population) - 2):
                 x_r2 = a[idx_x_r2 - len(population) + 2]
-            mutant = np.clip(population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2), min_b, max_b)
+            mutant = population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2)
+            for mutant_i in range(len(mutant)):
+                if mutant[mutant_i] < min_b[mutant_i]:
+                    mutant[mutant_i] = (population[j][mutant_i] + min_b[mutant_i]) / 2
+                    pass
+                elif mutant[mutant_i] > max_b[mutant_i]:
+                    mutant[mutant_i] = (population[j][mutant_i] + max_b[mutant_i]) / 2
+                    pass
+                pass
             cross_points = np.random.rand(dimensions) < cr
-            if not np.any(cross_points):
-                cross_points[np.random.randint(0, dimensions)] = True
+            cross_points[np.random.randint(0, dimensions)] = True
             trial = np.where(cross_points, mutant, population[j])
             fit = fobj(trial)
             if fit < fitness[j]:
@@ -115,16 +122,17 @@ def shade_test(fun, bounds, its=3000, log=0):
     pass
 
 
-def shade_test_20(fun, bounds, its):
+def shade_test_50(fun, bounds, its):
     result = []
-    for num in range(2):
+    for num in range(50):
         it = list(shade(fun, bounds, popsize=100, its=its))
         result.append(it[-1][-1])
         print(num, result[-1])
         pass
-    data = pd.DataFrame([['shade', fun.__name__, its, i] for i in result])
+    data = pd.DataFrame([['SHADE', fun.__name__, its, i] for i in result])
     data.to_csv('data.csv', mode='a', header=False)
     mean_result = np.mean(result)
     std_result = np.std(result)
     data_mean = pd.DataFrame([['SHADE', fun.__name__, its, mean_result, std_result]])
-    data_mean.to_csv('data_mean.csv', mode='a', header=False)
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
+    pass

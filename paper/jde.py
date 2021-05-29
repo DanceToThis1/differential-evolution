@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
+import pandas as pd
 
 
-def jde(fobj, bounds, mut=0.5, cr=0.9, popsize=20, its=1000):
+def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=100, its=1000):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -48,4 +49,20 @@ def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, log=0):
         plt.yscale('log')
     plt.legend()
     plt.show()
+    pass
+
+
+def jde_test_50(fun, bounds, its):
+    result = []
+    for num in range(50):
+        it = list(jde(fun, bounds, popsize=100, its=its))
+        result.append(it[-1][-1])
+        print(num, result[-1])
+        pass
+    data = pd.DataFrame([['JDE', fun.__name__, its, i] for i in result])
+    data.to_csv('data.csv', mode='a', header=False)
+    mean_result = np.mean(result)
+    std_result = np.std(result)
+    data_mean = pd.DataFrame([['JDE', fun.__name__, its, mean_result, std_result]])
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
     pass

@@ -2,10 +2,10 @@ import datetime
 import numpy as np
 import random
 from scipy.stats import cauchy
-import matplotlib.pyplot as plt
+import pandas as pd
 
 
-def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
+def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -15,7 +15,6 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
     for i in range(len(population_new)):
         population_new[i] = population[i]
         pass
-    mut = 0.5
     mean_cr = 0.5
     mean_mut = 0.5
     a = []  # 定义一个新种群A初始化为空
@@ -29,7 +28,7 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
         fitness_best = fobj(best)
         fitness = np.asarray([fobj(ind) for ind in population])
         for j in range(popsize):
-            p = 0.05 * popsize  # p的设置，固定值0.05-0.2 * NP，或者自适应调整。
+            p = 0.05 * popsize
             idx_x_best_p = random.randint(0, int(p))
             x_best_p = population[idx_x_best_p]
             idxs = [idx for idx in range(popsize) if idx != j]
@@ -43,11 +42,18 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
                     mut = cauchy.rvs(loc=mean_mut, scale=0.1)
                 else:
                     mut = 1
-            mutant = np.clip(population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2), min_b, max_b)
+            mutant = population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2)
+            for mutant_i in range(len(mutant)):
+                if mutant[mutant_i] < min_b[mutant_i]:
+                    mutant[mutant_i] = (population[j][mutant_i] + min_b[mutant_i]) / 2
+                    pass
+                elif mutant[mutant_i] > max_b[mutant_i]:
+                    mutant[mutant_i] = (population[j][mutant_i] + max_b[mutant_i]) / 2
+                    pass
+                pass
             cr = random.gauss(mean_cr, 0.1)
             cross_points = np.random.rand(dimensions) < cr
-            if not np.any(cross_points):
-                cross_points[np.random.randint(0, dimensions)] = True
+            cross_points[np.random.randint(0, dimensions)] = True
             trial = np.where(cross_points, mutant, population[j])
             fit = fobj(trial)
             if fit < fitness[j]:
@@ -67,40 +73,31 @@ def jade(fobj, bounds, popsize=20, its=1000, goal=0, c=0.1):
         if s_cr:
             mean_cr = (1 - c) * mean_cr + c * np.mean(s_cr)
             mean_mut = (1 - c) * mean_mut + c * (sum(ff ** 2 for ff in s_mut) / sum(s_mut))
-        if np.fabs(fitness_best - goal) < 1e-6:
-            print(i)
-            break
         yield best, fitness_best
-
-
-def jade_test(fun, bounds, its=3000, goal=0, log=0):
-    start = datetime.datetime.now()
-    it = list(jade(fun, bounds, popsize=100, its=its, goal=goal))
-    print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
-    x, f = zip(*it)
-    plt.plot(f, label='jade')
-    if log == 1:
-        plt.yscale('log')
-    plt.legend()
-    # plt.savefig('rastrigin with jade')
-    plt.show()
+        pass
     pass
 
 
-def rastrigin_jade_test_20(fun, bounds):
+def jade_test(fun, bounds, its=1000):
+    start = datetime.datetime.now()
+    it = list(jade(fun, bounds, popsize=100, its=its))
+    print(it[-1])
+    end = datetime.datetime.now()
+    print(end - start)
+    pass
+
+
+def jade_test_50(fun, bounds, its):
     result = []
-    for num in range(20):
-        it = list(jade(fun, bounds, popsize=100, its=3000, goal=0))
+    for num in range(50):
+        it = list(jade(fun, bounds, popsize=100, its=its))
         result.append(it[-1][-1])
+        print(num, result[-1])
         pass
+    data = pd.DataFrame([['JADE', fun.__name__, its, i] for i in result])
+    data.to_csv('data.csv', mode='a', header=False)
     mean_result = np.mean(result)
     std_result = np.std(result)
-    success_num = 0
-    for i in result:
-        if np.fabs(i - 0) < 1e-8:
-            success_num += 1
-            pass
-        pass
-    return mean_result, std_result, success_num
+    data_mean = pd.DataFrame([['JADE', fun.__name__, its, mean_result, std_result]])
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
+    pass

@@ -8,9 +8,10 @@ def fun_rastrigin(x):
 
 # 2 ackley  f(0,0,...,0) = 0   x [-5,5]*n
 def fun_ackley(x):
-    p1 = -0.2 * np.sqrt(0.5 * sum(x ** 2))
-    p2 = 0.5 * np.sum(np.cos(2 * np.pi * x))
-    return np.exp(1) + 20 - 20 * np.exp(p1) - np.exp(p2)
+    p1 = -0.2 * np.sqrt(sum(x ** 2) / len(x))
+    p2 = np.sum(np.cos(2 * np.pi * x)) / len(x)
+    return 20 - 20 * np.exp(p1) + np.exp(1) - np.exp(p2)
+    pass
 
 
 # 3 Sphere  f(0,0,...,0) = 0    x [-100,100]*n
