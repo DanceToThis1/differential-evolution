@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import datetime
 
 
-def code(fobj, bounds, popsize=20, its=2000, goal=0):
+def code(fobj, bounds, popsize=20, its=2000):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -51,16 +51,13 @@ def code(fobj, bounds, popsize=20, its=2000, goal=0):
             pass
         for k in range(len(population_new)):
             population[k] = population_new[k]
-        if np.fabs(min(fitness) - goal) < 1e-8:
-            print(i)
-            break
         yield best, fitness[best_idx]
     pass
 
 
-def code_test(fun, bounds, its=3000, goal=0, log=0):
+def code_test(fun, bounds, its=3000, log=0):
     start = datetime.datetime.now()
-    it = list(code(fun, bounds, popsize=100, its=its, goal=goal))
+    it = list(code(fun, bounds, popsize=100, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -70,4 +67,20 @@ def code_test(fun, bounds, its=3000, goal=0, log=0):
         plt.yscale('log')
     plt.legend()
     plt.show()
+    pass
+
+
+def code_test_50(fun, bounds, its):
+    result = []
+    for num in range(50):
+        it = list(code(fun, bounds, popsize=100, its=its))
+        result.append(it[-1][-1])
+        print(num, result[-1])
+        pass
+    data = pd.DataFrame([['CODE', fun.__name__, its, i] for i in result])
+    data.to_csv('data.csv', mode='a', header=False)
+    mean_result = np.mean(result)
+    std_result = np.std(result)
+    data_mean = pd.DataFrame([['CODE', fun.__name__, its, mean_result, std_result]])
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
     pass

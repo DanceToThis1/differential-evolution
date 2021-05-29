@@ -8,9 +8,10 @@ def fun_rastrigin(x):
 
 # 2 ackley  f(0,0,...,0) = 0   x [-5,5]*n
 def fun_ackley(x):
-    p1 = -0.2 * np.sqrt(0.5 * sum(x ** 2))
-    p2 = 0.5 * np.sum(np.cos(2 * np.pi * x))
-    return np.exp(1) + 20 - 20 * np.exp(p1) - np.exp(p2)
+    p1 = -0.2 * np.sqrt(sum(x ** 2) / len(x))
+    p2 = np.sum(np.cos(2 * np.pi * x)) / len(x)
+    return 20 - 20 * np.exp(p1) + np.exp(1) - np.exp(p2)
+    pass
 
 
 # 3 Sphere  f(0,0,...,0) = 0    x [-100,100]*n
@@ -173,112 +174,4 @@ benchmark functions
 19 fun_schaffrer_n4       f(0,+-1.25313) = 0.292579            [(-100,100)] * 2
 20 fun_styblinski_tang    -39.16617*n < f(-2.903534,           [(-5,5)] * n
                           ...,-2.903534) < -39.16616*n
-"""
-
-"""
-# Griewank's function min 0
-def fun_grienwank(x):
-    i = np.sqrt(np.arange(x.shape[0]) + 1.0)
-    return np.sum(x ** 2) / 4000.0 - np.prod(np.cos(x / i)) + 1.0
-
-
-# Weierstrass's function
-def fun_weierstrass(x):
-    alpha = 0.5
-    beta = 3.0
-    kmax = 20
-    D = x.shape[0]
-    exprf = 0.0
-
-    c1 = alpha ** np.arange(kmax + 1)
-    c2 = 2.0 * np.pi * beta ** np.arange(kmax + 1)
-    f = 0
-    c = -D * np.sum(c1 * np.cos(c2 * 0.5))
-
-    for i in range(D):
-        f += np.sum(c1 * np.cos(c2 * (x[i] + 0.5)))
-    return f + c
-
-
-##########################################################################
-# F1: Five-Uneven-Peak Trap
-# Variable ranges: x in [0, 30]
-# No. of global peaks: 2
-# No. of local peaks:  3.
-def five_uneven_peak_trap(x=None):
-    if x is None:
-        return None
-
-    result = None
-    if 0 <= x < 2.50:
-        result = 80 * (2.5 - x)
-    elif 2.5 <= x < 5:
-        result = 64 * (x - 2.5)
-    elif 5.0 <= x < 7.5:
-        result = 64 * (7.5 - x)
-    elif 7.5 <= x < 12.5:
-        result = 28 * (x - 7.5)
-    elif 12.5 <= x < 17.5:
-        result = 28 * (17.5 - x)
-    elif 17.5 <= x < 22.5:
-        result = 32 * (x - 17.5)
-    elif 22.5 <= x < 27.5:
-        result = 32 * (27.5 - x)
-    elif 27.5 <= x <= 30:
-        result = 80 * (x - 27.5)
-    return result
-
-
-# F5: Six-Hump Camel Back
-# Variable ranges: x in [-1.9, 1.9]; y in [-1.1, 1.1]
-# No. of global peaks: 2
-# No. of local peaks:  2.
-def six_hump_camel_back(x=None):
-    if x is None:
-        return None
-
-    x2 = x[0] ** 2
-    x4 = x[0] ** 4
-    y2 = x[1] ** 2
-    expr1 = (4.0 - 2.1 * x2 + x4 / 3.0) * x2
-    expr2 = x[0] * x[1]
-    expr3 = (4.0 * y2 - 4.0) * y2
-    return -1.0 * (expr1 + expr2 + expr3)
-    # result = (-4)*((4 - 2.1*(x[0]**2) + (x[0]**4)/3.0)*(x[0]**2) + x[0]*x[1] + (4*(x[1]**2) - 4)*(x[1]**2))
-    # return result
-
-
-# F6: Shubert
-# Variable ranges: x_i in  [-10, 10]^n, i=1,2,...,n
-# No. of global peaks: n*3^n
-# No. of local peaks: many
-def shubert(x=None):
-    if x is None:
-        return None
-
-    i = 0
-    result = 1
-    soma = [0] * len(x)
-    D = len(x)
-
-    while i < D:
-        for j in range(1, 6):
-            soma[i] = soma[i] + (j * math.cos((j + 1) * x[i] + j))
-        result = result * soma[i]
-        i = i + 1
-    return -result
-
-
-# F7: Vincent
-# Variable range: x_i in [0.25, 10]^n, i=1,2,...,n
-# No. of global optima: 6^n
-# No. of local optima:  0.
-def vincent(x=None):
-    if x is None:
-        return None
-
-    result = 0
-    for i in range(0, 30):
-        result += (math.sin(10 * math.log(x[i]))) / 30
-    return result
 """

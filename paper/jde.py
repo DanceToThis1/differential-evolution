@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
+import pandas as pd
 
 
-def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=20, its=1000, goal=0):
+def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=100, its=1000):
     dimensions = len(bounds)
     pop = np.random.rand(popsize, dimensions)
     min_b, max_b = np.asarray(bounds).T
@@ -33,15 +34,12 @@ def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=20, its=1000, goal=0):
                 if f < fitness[best_idx]:
                     best_idx = j
                     best = trial
-        if np.fabs(min(fitness) - goal) < 1e-8:
-            print(i)
-            break
         yield best, fitness[best_idx]
 
 
-def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, goal=0, log=0):
+def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, log=0):
     start = datetime.datetime.now()
-    it = list(jde(fun, bounds, mut=mut, cr=cr, popsize=100, its=its, goal=goal))
+    it = list(jde(fun, bounds, mut=mut, cr=cr, popsize=100, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -50,6 +48,21 @@ def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, goal=0, log=0):
     if log == 1:
         plt.yscale('log')
     plt.legend()
-    # plt.savefig('rastrigin with jde')
     plt.show()
+    pass
+
+
+def jde_test_50(fun, bounds, its):
+    result = []
+    for num in range(50):
+        it = list(jde(fun, bounds, popsize=100, its=its))
+        result.append(it[-1][-1])
+        print(num, result[-1])
+        pass
+    data = pd.DataFrame([['JDE', fun.__name__, its, i] for i in result])
+    data.to_csv('data.csv', mode='a', header=False)
+    mean_result = np.mean(result)
+    std_result = np.std(result)
+    data_mean = pd.DataFrame([['JDE', fun.__name__, its, mean_result, std_result]])
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
     pass

@@ -6,7 +6,7 @@ import datetime
 import matplotlib.pyplot as plt
 
 
-def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
+def sade(fobj, bounds=None, popsize=20, its=1000):
     if bounds is None:
         bounds = [(-100, 100)] * 30
     dimensions = len(bounds)
@@ -17,8 +17,8 @@ def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
     fitness = np.asarray([fobj(ind) for ind in population])
     best_idx = np.argmin(fitness)
     best = population[best_idx]
-    sp = strategy_probability = [0.25] * 4
-    lp = learning_period = 5
+    sp = [0.25] * 4
+    lp = 5
     success_memory = np.zeros([lp, 4])
     failure_memory = np.zeros([lp, 4])
     cr_memory = [[], [], [], []]
@@ -73,21 +73,27 @@ def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
             mut = random.gauss(0.5, 0.3)
             if rand_sp < sp[0]:
                 strategy_num = 0
-                cr_median_0 = statistics.median(cr_memory[0])
+                cr_median_0 = 0.5
+                if cr_memory[0]:
+                    cr_median_0 = statistics.median(cr_memory[0])
                 cr_0 = random.gauss(cr_median_0, 0.1)
                 while (cr_0 < 0) or (cr_0 > 1):
                     cr_0 = random.gauss(cr_median_0, 0.1)
                 trial = rand_1_bin(a, b, c, mut, min_b, max_b, popj, dimensions, cr_0)
             elif rand_sp < sum(sp[:2]):
                 strategy_num = 1
-                cr_median_1 = statistics.median(cr_memory[1])
+                cr_median_1 = 0.5
+                if cr_memory[1]:
+                    cr_median_1 = statistics.median(cr_memory[1])
                 cr_1 = random.gauss(cr_median_1, 0.1)
                 while (cr_1 < 0) or (cr_1 > 1):
                     cr_1 = random.gauss(cr_median_1, 0.1)
                 trial = rand_to_best_2_bin(a, b, c, d, mut, min_b, max_b, popj, dimensions, best, cr_1)
             elif rand_sp < sum(sp[:3]):
                 strategy_num = 2
-                cr_median_2 = statistics.median(cr_memory[2])
+                cr_median_2 = 0.5
+                if cr_memory[2]:
+                    cr_median_2 = statistics.median(cr_memory[2])
                 cr_2 = random.gauss(cr_median_2, 0.1)
                 while (cr_2 < 0) or (cr_2 > 1):
                     cr_2 = random.gauss(cr_median_2, 0.1)
@@ -106,9 +112,6 @@ def sade(fobj, bounds=None, popsize=20, its=1000, goal=0):
                     best = trial
             else:
                 failure_memory[i % lp, strategy_num] += 1
-        if np.fabs(min(fitness) - goal) < 1e-8:
-            print(i)
-            break
         yield best, fitness[best_idx]
 
 
@@ -162,9 +165,9 @@ def rastrigin_sade_test_20(fun, bounds):
     return mean_result, std_result, success_num
 
 
-def sade_test(fun, bounds, its=3000, goal=0, log=0):
+def sade_test(fun, bounds, its=3000, log=1):
     start = datetime.datetime.now()
-    it = list(sade(fun, bounds, popsize=100, its=its, goal=goal))
+    it = list(sade(fun, bounds, popsize=100, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -174,4 +177,20 @@ def sade_test(fun, bounds, its=3000, goal=0, log=0):
         plt.yscale('log')
     plt.legend()
     plt.show()
+    pass
+
+
+def sade_test_50(fun, bounds, its):
+    result = []
+    for num in range(50):
+        it = list(sade(fun, bounds, popsize=100, its=its))
+        result.append(it[-1][-1])
+        print(num, result[-1])
+        pass
+    data = pd.DataFrame([['SADE', fun.__name__, its, i] for i in result])
+    data.to_csv('data.csv', mode='a', header=False)
+    mean_result = np.mean(result)
+    std_result = np.std(result)
+    data_mean = pd.DataFrame([['SADE', fun.__name__, its, mean_result, std_result]])
+    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
     pass
