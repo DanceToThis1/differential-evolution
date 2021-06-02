@@ -332,8 +332,8 @@ def jade_a(fobj, bounds, popsize=100, its=1000, c=0.1):
             else:
                 population_new[j] = population[j]
         while len(a) > popsize:
-            index = random.randint(0, len(a) - 1)
-            a.pop(index)
+            index1 = random.randint(0, len(a) - 1)
+            a.pop(index1)
             pass
         for k in range(len(population_new)):
             population[k] = population_new[k]
@@ -441,6 +441,25 @@ def jade_without_a_test(fun, bounds, its=1000, log=1):
     pass
 
 
+def test(fun, bounds, its=1000, log=1):
+    start = datetime.datetime.now()
+    it1 = list(jade_a(fun, bounds, popsize=100, its=its))
+    print(it1[-1])
+    it2 = list(jade_a(fun, bounds, popsize=100, its=its))
+    print(it2[-1])
+    end = datetime.datetime.now()
+    print(end - start)
+    x, f1 = zip(*it1)
+    x, f2 = zip(*it2)
+    plt.plot(f1, label='jade')
+    plt.plot(f2, label='jade_wo_a')
+    if log == 1:
+        plt.yscale('log')
+    plt.legend()
+    plt.show()
+    pass
+
+
 def jade_a_test_20(fun, bounds, its):
     result = []
     for num in range(50):
@@ -498,5 +517,5 @@ dic1 = {
 #     jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
 #     pass
 #
-jade_without_a_test(fun_10, [(-32, 32)] * 2, its=200, log=1)
-
+index = 1
+test(dic1[index][1], dic1[index][2], dic1[index][3], log=1)

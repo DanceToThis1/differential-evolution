@@ -5,6 +5,43 @@ from paper.jade import *
 from paper.shade import *
 from paper.code import *
 
+
+def test(fun, bounds, its=1000, popsize=20, log=1):
+    it_de = list(de(fun, bounds, popsize=popsize, its=its))
+    # print(it_de[-1])
+    it_jde = list(jde(fun, bounds, popsize=popsize, its=its))
+    # print(it_jde[-1])
+    it_sade = list(sade(fun, bounds, popsize=popsize, its=its))
+    # print(it_sade[-1])
+    it_jade = list(jade(fun, bounds, popsize=popsize, its=its))
+    # print(it_jade[-1])
+    it_shade = list(shade(fun, bounds, popsize=popsize, its=its))
+    # print(it_shade[-1])
+    it_code = list(code(fun, bounds, popsize=popsize, its=its))
+    # print(it_code[-1])
+    x, f1 = zip(*it_de)
+    x, f2 = zip(*it_jde)
+    x, f3 = zip(*it_sade)
+    x, f4 = zip(*it_jade)
+    x, f5 = zip(*it_shade)
+    x, f6 = zip(*it_code)
+    plt.xlabel("iterations")
+    plt.ylabel("best_fitness_value")
+    plt.title(fun.__name__)
+    plt.plot(f1, '-', label='de')
+    plt.plot(f2, '--', label='jde')
+    plt.plot(f3, ':', label='sade')
+    plt.plot(f4, dashes=[12, 12], label='jade')
+    plt.plot(f5, dashes=[6, 12], label='shade')
+    plt.plot(f6, dashes=[3, 6], label='code')
+    if log == 1:
+        plt.yscale('log')
+    plt.legend()
+    plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\paper\\image2\\' + str(fun.__name__))
+    plt.show()
+    pass
+
+
 if __name__ == '__main__':
     algorithm_dic = {
         1: de_rand_1_test,
@@ -88,7 +125,7 @@ if __name__ == '__main__':
         5: 1,
         6: 0,
         7: 1,
-        8: 0,
+        8: 1,
         9: 1,
         10: 1,
         11: 1,
@@ -101,6 +138,28 @@ if __name__ == '__main__':
         18: 1,
         19: 0,
         20: 0
+    }
+    popsize_dic = {
+        1: 100,
+        2: 20,
+        3: 100,
+        4: 100,
+        5: 20,
+        6: 20,
+        7: 20,
+        8: 20,
+        9: 20,
+        10: 20,
+        11: 20,
+        12: 20,
+        13: 20,
+        14: 20,
+        15: 20,
+        16: 20,
+        17: 20,
+        18: 20,
+        19: 20,
+        20: 100
     }
     # algorithm_dic[algo_index](functions_dic[fun_index], bounds_dic[fun_index], its=3000, goal=goal_dic[fun_index],
     #                           log=log_dic[fun_index])
@@ -126,13 +185,15 @@ if __name__ == '__main__':
         19: {1: fun_schaffrer_n4, 2: [(-100, 100)] * 2, 3: 100},
         20: {1: fun_styblinski_tang, 2: [(-5, 5)] * 30, 3: 1000}
     }
-    for index in range(2, 3):
-        jde_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
-        sade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
-        jade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
-        shade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
-        code_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
-    pass
+    # for index in range(2, 3):
+    #     jde_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
+    #     sade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
+    #     jade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
+    #     shade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
+    #     code_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
+    # pass
+    for index in range(1, 21):
+        test(dic1[index][1], dic1[index][2], dic1[index][3], popsize=popsize_dic[index], log=log_dic[index])
 
 """
 benchmark functions
