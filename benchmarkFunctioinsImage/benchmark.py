@@ -5,10 +5,10 @@ from mpl_toolkits.mplot3d import Axes3D
 
 def draw_pic_3D(x, y, z, title, z_min, z_max, offset):
     fig = plt.figure()
-    ax = Axes3D(fig)
+    ax = Axes3D(fig, auto_add_to_figure=False)
+    fig.add_axes(ax)
     # rstride代表row行步长  cstride代表colum列步长  camp 渐变颜色
     ax.plot_surface(x, y, z, rstride=1, cstride=1, cmap=plt.get_cmap('rainbow'), color='orangered')
-    # 绘制等高线
     ax.contour(x, y, z, offset=offset, colors='green')
     ax.set_zlim(z_min, z_max)
     ax.set_title(title)
@@ -46,7 +46,6 @@ def Shubert(z_min=-300, z_max=200, offset=-300):
 
 def Vincent(z_min=-1, z_max=1, offset=-1):
     x, y = get_xy(0.25, 10, 0.25, 10)
-
     z1 = np.sin(10 * np.log(x))
     z2 = np.sin(10 * np.log(y))
     z = (z1 + z2) / 2
@@ -108,5 +107,5 @@ if __name__ == '__main__':
         7: Weierstrass,
         8: EF8F2
     }
-    x1, y1, z_0, title1, z_min1, z_max1, offset1 = dic_fun[1]()
+    x1, y1, z_0, title1, z_min1, z_max1, offset1 = dic_fun[4]()
     draw_pic_3D(x1, y1, z_0, title1, z_min1, z_max1, offset1)
