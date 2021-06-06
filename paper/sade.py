@@ -5,6 +5,13 @@ import statistics
 import datetime
 import matplotlib.pyplot as plt
 
+"""
+sade
+文献中cr存储LP代，之前数据删除。目前还没实现，cr列表中存储的是所有迭代中的数据。
+要实现的话要将每次迭代生成的cr值分开存储，记录是那一代生成的才行。
+lp设置为5，不知道是不是合适。
+"""
+
 
 def sade(fobj, bounds=None, popsize=20, its=1000):
     if bounds is None:
@@ -23,6 +30,9 @@ def sade(fobj, bounds=None, popsize=20, its=1000):
     failure_memory = np.zeros([lp, 4])
     cr_memory = [[], [], [], []]
     cr = 0.5
+    cr_median_0 = 0.5
+    cr_median_1 = 0.5
+    cr_median_2 = 0.5
     for i in range(lp):
         for j in range(popsize):
             popj = population[j]
@@ -73,7 +83,6 @@ def sade(fobj, bounds=None, popsize=20, its=1000):
             mut = random.gauss(0.5, 0.3)
             if rand_sp < sp[0]:
                 strategy_num = 0
-                cr_median_0 = 0.5
                 if cr_memory[0]:
                     cr_median_0 = statistics.median(cr_memory[0])
                 cr_0 = random.gauss(cr_median_0, 0.1)
@@ -82,7 +91,6 @@ def sade(fobj, bounds=None, popsize=20, its=1000):
                 trial = rand_1_bin(a, b, c, mut, min_b, max_b, popj, dimensions, cr_0)
             elif rand_sp < sum(sp[:2]):
                 strategy_num = 1
-                cr_median_1 = 0.5
                 if cr_memory[1]:
                     cr_median_1 = statistics.median(cr_memory[1])
                 cr_1 = random.gauss(cr_median_1, 0.1)
@@ -91,7 +99,6 @@ def sade(fobj, bounds=None, popsize=20, its=1000):
                 trial = rand_to_best_2_bin(a, b, c, d, mut, min_b, max_b, popj, dimensions, best, cr_1)
             elif rand_sp < sum(sp[:3]):
                 strategy_num = 2
-                cr_median_2 = 0.5
                 if cr_memory[2]:
                     cr_median_2 = statistics.median(cr_memory[2])
                 cr_2 = random.gauss(cr_median_2, 0.1)
@@ -112,6 +119,8 @@ def sade(fobj, bounds=None, popsize=20, its=1000):
                     best = trial
             else:
                 failure_memory[i % lp, strategy_num] += 1
+        # print(len(cr_memory[0]), len(cr_memory[1]), len(cr_memory[2]))
+        # yield best, statistics.median(cr_memory[0]), statistics.median(cr_memory[1]), statistics.median(cr_memory[2]), fitness[best_idx]
         yield best, fitness[best_idx]
 
 
@@ -193,4 +202,26 @@ def sade_test_50(fun, bounds, its):
     std_result = np.std(result)
     data_mean = pd.DataFrame([['SADE', fun.__name__, its, mean_result, std_result]])
     data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
+    pass
+
+
+"""
+用来查看cr存储中平均值，但是由于没有删除之前的数据导致CR平均值一直没变化。
+要将CR存储改为只存lp代之后才能看出效果，也有可能是因为这导致算法性能不好。
+"""
+
+
+def sade_test_1(fun, bounds, popsize=100, its=3000):
+    start = datetime.datetime.now()
+    it = list(sade(fun, bounds, popsize=popsize, its=its))
+    print(it[-1])
+    end = datetime.datetime.now()
+    print(end - start)
+    x, cr_0, cr_1, cr_2, f = zip(*it)
+    plt.plot(cr_0, label='rand1_CR')
+    plt.plot(cr_1, label='rand_to_best2_CR')
+    plt.plot(cr_2, label='rand2_CR')
+    plt.title('SADE ' + fun.__name__)
+    plt.legend()
+    plt.show()
     pass

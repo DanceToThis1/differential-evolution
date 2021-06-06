@@ -89,9 +89,9 @@ def de_randtobest_2(fobj, bounds, mut=0.5, cr=0.3, popsize=20, its=1000):
     pass
 
 
-def de_rand_1_test(fun, bounds, mut=0.9, cr=0.1, its=3000, log=1):
+def de_rand_1_test(fun, bounds, mut=0.9, cr=0.1, popsize=100, its=3000, log=1):
     start = datetime.datetime.now()
-    it = list(de(fun, bounds, mut, cr, popsize=100, its=its))
+    it = list(de(fun, bounds, mut, cr, popsize=popsize, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
