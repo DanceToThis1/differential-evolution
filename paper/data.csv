@@ -1,3 +1,4 @@
+index,algorithm,fun_to_be_optimized,iterations,optimum
 0,JDE,fun_rastrigin,1000,39.73057345333304
 1,JDE,fun_rastrigin,1000,46.41160767293985
 2,JDE,fun_rastrigin,1000,49.214895636841355

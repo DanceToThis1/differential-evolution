@@ -20,7 +20,7 @@ def shade(fobj, bounds, popsize=20, its=1000, h=100):
     min_b, max_b = np.asarray(bounds).T
     diff = np.fabs(min_b - max_b)
     population = min_b + pop * diff
-    population_new = np.random.rand(popsize, dimensions)
+    population_new = np.zeros(popsize * dimensions).reshape(popsize, dimensions)
     for i in range(len(population_new)):
         population_new[i] = population[i]
         pass
@@ -38,9 +38,10 @@ def shade(fobj, bounds, popsize=20, its=1000, h=100):
         fitness_best = fobj(best)
         fitness = np.asarray([fobj(ind) for ind in population])
         fk = []
+        r_i = 0
         for j in range(popsize):
             r_i = random.randint(0, h - 1)
-            cr = random.gauss(mcr[r_i], 0.1)
+            cr = np.clip(random.gauss(mcr[r_i], 0.1), 0, 1)
             mut = cauchy.rvs(loc=mf[r_i], scale=0.1)
             while mut < 0 or mut > 1:
                 if mut < 0:
@@ -104,12 +105,12 @@ def shade(fobj, bounds, popsize=20, its=1000, h=100):
                 m = 1
                 pass
             pass
-        yield best, fitness_best
+        yield best, mf[r_i], mcr[r_i], fitness_best
 
 
-def shade_test(fun, bounds, its=3000, log=0):
+def shade_test(fun, bounds, popsize=100, its=3000, log=0):
     start = datetime.datetime.now()
-    it = list(shade(fun, bounds, popsize=100, its=its))
+    it = list(shade(fun, bounds, popsize=popsize, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
@@ -117,6 +118,21 @@ def shade_test(fun, bounds, its=3000, log=0):
     plt.plot(f, label='shade')
     if log == 1:
         plt.yscale('log')
+    plt.legend()
+    plt.show()
+    pass
+
+
+def shade_test_1(fun, bounds, popsize=100, its=1000):
+    start = datetime.datetime.now()
+    it = list(shade(fun, bounds, popsize=popsize, its=its))
+    print(it[-1])
+    end = datetime.datetime.now()
+    print(end - start)
+    x, mut, cr, f = zip(*it)
+    plt.plot(mut, label='F')
+    plt.plot(cr, label='CR')
+    plt.title('SHADE ' + fun.__name__)
     plt.legend()
     plt.show()
     pass

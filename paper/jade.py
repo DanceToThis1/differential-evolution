@@ -1,4 +1,6 @@
 import datetime
+
+import matplotlib.pyplot as plt
 import numpy as np
 import random
 from scipy.stats import cauchy
@@ -11,7 +13,7 @@ def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
     min_b, max_b = np.asarray(bounds).T
     diff = np.fabs(min_b - max_b)
     population = min_b + pop * diff
-    population_new = np.random.rand(popsize, dimensions)
+    population_new = np.zeros(popsize * dimensions).reshape(popsize, dimensions)
     for i in range(len(population_new)):
         population_new[i] = population[i]
         pass
@@ -51,7 +53,7 @@ def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
                     mutant[mutant_i] = (population[j][mutant_i] + max_b[mutant_i]) / 2
                     pass
                 pass
-            cr = random.gauss(mean_cr, 0.1)
+            cr = np.clip(random.gauss(mean_cr, 0.1), 0, 1)
             cross_points = np.random.rand(dimensions) < cr
             cross_points[np.random.randint(0, dimensions)] = True
             trial = np.where(cross_points, mutant, population[j])
@@ -67,23 +69,29 @@ def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
             index = random.randint(0, len(a) - 1)
             a.pop(index)
             pass
-        for k in range(len(population_new)):
+        for k in range(len(population)):
             population[k] = population_new[k]
             pass
         if s_cr:
             mean_cr = (1 - c) * mean_cr + c * np.mean(s_cr)
             mean_mut = (1 - c) * mean_mut + c * (sum(ff ** 2 for ff in s_mut) / sum(s_mut))
-        yield best, fitness_best
+        yield best, mean_mut, mean_cr, fitness_best
         pass
     pass
 
 
-def jade_test(fun, bounds, its=1000):
+def jade_test(fun, bounds, popsize=100, its=1000):
     start = datetime.datetime.now()
-    it = list(jade(fun, bounds, popsize=100, its=its))
+    it = list(jade(fun, bounds, popsize=popsize, its=its))
     print(it[-1])
     end = datetime.datetime.now()
     print(end - start)
+    x, mut, cr, f = zip(*it)
+    plt.plot(mut, label='F')
+    plt.plot(cr, label='CR')
+    plt.title('JADE ' + fun.__name__)
+    plt.legend()
+    plt.show()
     pass
 
 

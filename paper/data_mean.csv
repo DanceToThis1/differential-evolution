@@ -1,3 +1,4 @@
+algorithm,fun_to_be_optimized,iterations,optimum_mean,optimum_std
 JDE,fun_rastrigin,1000,47.49627465456474,4.3457294275631835
 SADE,fun_rastrigin,1000,28.116569263369055,3.607564200029102
 JADE,fun_rastrigin,1000,5.669792249349825e-06,3.129783568411521e-06
