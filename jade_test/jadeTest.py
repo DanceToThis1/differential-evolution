@@ -319,7 +319,7 @@ def jade_a(fobj, bounds, popsize=100, its=1000, c=0.1):
                     mutant[mutant_i] = (population[j][mutant_i] + max_b[mutant_i]) / 2
                     pass
                 pass
-            cr = random.gauss(mean_cr, 0.1)
+            cr = np.clip(random.gauss(mean_cr, 0.1), 0, 1)
             cross_points = np.random.rand(dimensions) < cr
             cross_points[np.random.randint(0, dimensions)] = True
             trial = np.where(cross_points, mutant, population[j])
@@ -388,7 +388,7 @@ def jade_without_a(fobj, bounds, popsize=100, its=1000, c=0.1):
                     mutant[mutant_i] = (population[j][mutant_i] + max_b[mutant_i]) / 2
                     pass
                 pass
-            cr = random.gauss(mean_cr, 0.1)
+            cr = np.clip(random.gauss(mean_cr, 0.1), 0, 1)
             cross_points = np.random.rand(dimensions) < cr
             if not np.any(cross_points):
                 cross_points[np.random.randint(0, dimensions)] = True
