@@ -41,7 +41,7 @@ def test(fun, bounds, its=1000, popsize=20, log=1):
     if log == 1:
         plt.yscale('log')
     plt.legend()
-    plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\paper\\image2\\' + str(fun.__name__))
+    # plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\paper\\image2\\' + str(fun.__name__))
     plt.show()
     pass
 
@@ -120,12 +120,12 @@ if __name__ == '__main__':
     #     shade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
     #     code_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
     # pass
-
+    index1 = 2
     # for index in range(1, 21):
     #     test(dic1[index][1], dic1[index][2], dic1[index][3], popsize=popsize_dic[index], log=log_dic[index])
+    test(dic1[index1][1], dic1[index1][2], dic1[index1][3], popsize=popsize_dic[index1], log=log_dic[index1])
 
-    index1 = 1
-    jade_test(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
+    # jade_test(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
     # shade_test_1(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
     # sade_test_1(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
 

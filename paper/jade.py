@@ -75,7 +75,8 @@ def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
         if s_cr:
             mean_cr = (1 - c) * mean_cr + c * np.mean(s_cr)
             mean_mut = (1 - c) * mean_mut + c * (sum(ff ** 2 for ff in s_mut) / sum(s_mut))
-        yield best, mean_mut, mean_cr, fitness_best
+        # yield best, mean_mut, mean_cr, fitness_best
+        yield best, fitness_best
         pass
     pass
 
