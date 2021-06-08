@@ -105,7 +105,8 @@ def shade(fobj, bounds, popsize=20, its=1000, h=100):
                 m = 1
                 pass
             pass
-        yield best, mf[r_i], mcr[r_i], fitness_best
+        # yield best, mf[r_i], mcr[r_i], fitness_best
+        yield best, fitness_best
 
 
 def shade_test(fun, bounds, popsize=100, its=3000, log=0):
