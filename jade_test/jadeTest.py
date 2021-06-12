@@ -513,9 +513,9 @@ dic1 = {
     19: {1: fun_shekel7, 2: [(0, 10)] * 4, 3: 200},
     20: {1: fun_shekel10, 2: [(0, 10)] * 4, 3: 200}
 }
-# for test_index in range(16, 17):
-#     jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
-#     pass
-#
-index = 1
-test(dic1[index][1], dic1[index][2], dic1[index][3], log=1)
+
+
+if __name__ == '__main__':
+    for test_index in range(16, 17):
+        jade_a_test_20(dic1[test_index][1], dic1[test_index][2], dic1[test_index][3])
+        pass
