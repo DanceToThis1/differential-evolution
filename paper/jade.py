@@ -100,7 +100,6 @@ def jade_test(fun, bounds, popsize=100, its=1000):
     plt.plot(cr, label='CR')
     plt.title('JADE ' + fun.__name__)
     plt.legend()
-    # plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\paper\\image1\\' + 'JADE' + str(fun.__name__))
     plt.show()
     pass
 
