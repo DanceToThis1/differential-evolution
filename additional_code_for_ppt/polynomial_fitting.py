@@ -8,6 +8,9 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import cauchy
+import os
+path1 = os.path.abspath('.')
+path2 = os.path.abspath('..')
 
 
 def fun_fifth_polynomial(x, w):
@@ -96,7 +99,7 @@ def test_1():
     plt.plot(xx, fun_fifth_polynomial(xx, it[-1][0]), label='result')
     plt.title('polynomial_fitting')
     plt.legend()
-    plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\image\\image_in_ppt\\' + 'polynomial_fitting')
+    # plt.savefig(path2 + '/image/image_in_ppt/polynomial_fitting1')
     plt.show()
 
 

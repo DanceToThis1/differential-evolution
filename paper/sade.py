@@ -4,6 +4,9 @@ import random
 import statistics
 import datetime
 import matplotlib.pyplot as plt
+import os
+path1 = os.path.abspath('.')
+path2 = os.path.abspath('..')
 
 """
 sade
@@ -197,11 +200,11 @@ def sade_test_50(fun, bounds, its):
         print(num, result[-1])
         pass
     data = pd.DataFrame([['SADE', fun.__name__, its, i] for i in result])
-    data.to_csv('data.csv', mode='a', header=False)
+    data.to_csv(path1 + '/all_algorithm_test_data/data.csv', mode='a', header=False)
     mean_result = np.mean(result)
     std_result = np.std(result)
     data_mean = pd.DataFrame([['SADE', fun.__name__, its, mean_result, std_result]])
-    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
+    data_mean.to_csv(path1 + '/all_algorithm_test_data/data.csv', mode='a', index=False, header=False)
     pass
 
 

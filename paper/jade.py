@@ -1,10 +1,12 @@
 import datetime
-
 import matplotlib.pyplot as plt
 import numpy as np
 import random
 from scipy.stats import cauchy
 import pandas as pd
+import os
+path1 = os.path.abspath('.')
+path2 = os.path.abspath('..')
 
 
 def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
@@ -81,6 +83,12 @@ def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
     pass
 
 
+"""
+jade_test
+参数随迭代次数的变化情况
+"""
+
+
 def jade_test(fun, bounds, popsize=100, its=1000):
     start = datetime.datetime.now()
     it = list(jade(fun, bounds, popsize=popsize, its=its))
@@ -92,7 +100,7 @@ def jade_test(fun, bounds, popsize=100, its=1000):
     plt.plot(cr, label='CR')
     plt.title('JADE ' + fun.__name__)
     plt.legend()
-    plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\paper\\image1\\' + 'JADE' + str(fun.__name__))
+    # plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\paper\\image1\\' + 'JADE' + str(fun.__name__))
     plt.show()
     pass
 
@@ -105,9 +113,9 @@ def jade_test_50(fun, bounds, its):
         print(num, result[-1])
         pass
     data = pd.DataFrame([['JADE', fun.__name__, its, i] for i in result])
-    data.to_csv('data.csv', mode='a', header=False)
+    data.to_csv(path1 + '/all_algorithm_test_data/data.csv', mode='a', header=False)
     mean_result = np.mean(result)
     std_result = np.std(result)
     data_mean = pd.DataFrame([['JADE', fun.__name__, its, mean_result, std_result]])
-    data_mean.to_csv('data_mean.csv', mode='a', index=False, header=False)
+    data_mean.to_csv(path1 + '/all_algorithm_test_data/data.csv', mode='a', index=False, header=False)
     pass

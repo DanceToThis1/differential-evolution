@@ -1,6 +1,9 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import datetime
+from functions import fun_sphere
+
+"""
+实现标准差分进化算法，包括三种策略，此项目中后两种策略没有涉及。
+"""
 
 
 def de(fobj, bounds, mut=0.9, cr=0.1, popsize=20, its=1000):
@@ -89,16 +92,25 @@ def de_randtobest_2(fobj, bounds, mut=0.5, cr=0.3, popsize=20, its=1000):
     pass
 
 
-def de_rand_1_test(fun, bounds, mut=0.9, cr=0.1, popsize=100, its=3000, log=1):
-    start = datetime.datetime.now()
+"""
+@function de_rand_1_test:标准差分进化算法测试
+@:parameter fun:评价函数，在benchmarkFunctions目录下的functions.py中有定义。或者直接使用'lambda x: sum(x ** 2)'。
+@:parameter bounds:评价函数每个维度的限定搜索范围，如[(-100, 100)] * 30
+@:parameter mut: 即缩放因子参数F，由于F容易冲突所以改为mut。
+@:parameter cr: 交叉概率
+@:parameter popsize: 即种群大小NP
+@:parameter its: 迭代次数，对于已知全局最优解的函数也可以设置为差异足够小时停止。
+@:return 由于采用yield，所以需要再加一层list。返回一个列表，列表中包含两项，第一项为每次迭代中种群的最优向量，第二项为每次迭代最优向量对应的适应值。
+"""
+
+
+def de_rand_1_test(fun=None, bounds=None, mut=0.9, cr=0.1, popsize=100, its=1000):
+    if fun is None:
+        fun = fun_sphere
+    if bounds is None:
+        bounds = [(-100, 100)] * 30
     it = list(de(fun, bounds, mut, cr, popsize=popsize, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
-    x, f = zip(*it)
-    plt.plot(f, label='de rand 1 bin')
-    if log == 1:
-        plt.yscale('log')
-    plt.legend()
-    plt.show()
     pass
+
+# de_rand_1_test()

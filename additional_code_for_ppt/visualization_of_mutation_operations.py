@@ -31,5 +31,5 @@ plt.plot(np.arange(-2.5, -0.5, 0.1), [-0.5] * len(np.arange(-2.5, -0.5, 0.1)), '
 ax.arrow(-3, -2, 1, 3, width=0.05)
 ax.arrow(-1, -2, 0.5, 1.5, width=0.05)
 ax.contour(x, y, z, levels=10, alpha=0.3)
-plt.savefig('contour line test')
+# plt.savefig('contour line test')
 plt.show()
