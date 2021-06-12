@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+变异操作可视化
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 

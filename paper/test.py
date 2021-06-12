@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 from benchmarkFunctions.functions import *
 from paper.de import *
 from paper.jde import *
@@ -44,6 +46,18 @@ def test(fun, bounds, its=1000, popsize=20, log=1):
     # plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\paper\\image2\\' + str(fun.__name__))
     plt.show()
     pass
+
+
+def test1(fun, bounds, its=1000, popsize=20, log=1):
+    it_de = list(de(fun, bounds, popsize=popsize, its=its))
+    x, f1 = zip(*it_de)
+    plt.Figure(figsize=(2.8, 3.8))
+    plt.title(fun.__name__)
+    plt.plot(f1, '-', label='de')
+    if log == 1:
+        plt.yscale('log')
+    plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\image\\all_algorithm_performance\\' + str(fun.__name__))
+    plt.show()
 
 
 if __name__ == '__main__':
@@ -113,6 +127,7 @@ if __name__ == '__main__':
         19: {1: fun_schaffrer_n4, 2: [(-100, 100)] * 2, 3: 100},
         20: {1: fun_styblinski_tang, 2: [(-5, 5)] * 30, 3: 1000}
     }
+    """生成csv文件，记录每次优化的结果和每50次优化的平均值和标准差"""
     # for index in range(2, 3):
     #     jde_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
     #     sade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
@@ -120,14 +135,19 @@ if __name__ == '__main__':
     #     shade_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
     #     code_test_50(dic1[index][1], dic1[index][2], dic1[index][3])
     # pass
+    """画出6个算法在测试函数上优化的表现"""
     index1 = 2
     # for index in range(1, 21):
     #     test(dic1[index][1], dic1[index][2], dic1[index][3], popsize=popsize_dic[index], log=log_dic[index])
-    test(dic1[index1][1], dic1[index1][2], dic1[index1][3], popsize=popsize_dic[index1], log=log_dic[index1])
+    test1(dic1[index1][1], dic1[index1][2], dic1[index1][3], popsize=popsize_dic[index1], log=log_dic[index1])
 
-    # jade_test(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
-    # shade_test_1(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
-    # sade_test_1(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
+"""
+画出每个算法参数设计随迭代次数的变化情况
+"""
+
+# jade_test(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
+# shade_test_1(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
+# sade_test_1(dic1[index1][1], dic1[index1][2], popsize=popsize_dic[index1], its=dic1[index1][3])
 
 """
 benchmark functions

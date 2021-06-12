@@ -96,7 +96,7 @@ def test_1():
     plt.plot(xx, fun_fifth_polynomial(xx, it[-1][0]), label='result')
     plt.title('polynomial_fitting')
     plt.legend()
-    plt.savefig('polynomial_fitting')
+    plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\image\\image_in_ppt\\' + 'polynomial_fitting')
     plt.show()
 
 

@@ -75,7 +75,7 @@ def test_2():
     plt.contour(xx, yy, z, levels=10, alpha=0.3)
     plt.scatter(x, y)
     plt.title('how cr influence population, cr=0.1')
-    plt.savefig('how cr influence population' + str(random.randint(1, 1000)))
+    plt.savefig('C:\\Users\\zhang\\PycharmProjects\\differentialEvolution\\image\\image_in_ppt\\' + 'how cr influence population' + str(random.randint(1, 1000)))
     plt.show()
     pass
 
