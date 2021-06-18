@@ -57,7 +57,7 @@ def draw_all_algo_performance(fun, bounds, its=1000, popsize=20, log=1):
     if log == 1:
         plt.yscale('log')
     plt.legend()
-    # plt.savefig(path2 + '/image/all_algorithm_performance/' + str(fun.__name__))
+    # plt.savefig(path2 + '/image/all_algo_performance_update/' + str(fun.__name__))
     plt.show()
     pass
 
@@ -74,11 +74,10 @@ def generate_all_algo_test_data_csv():
 
 if __name__ == '__main__':
     """生成csv文件，记录每次优化的结果和每50次优化的平均值和标准差"""
-    generate_all_algo_test_data_csv()
+    # generate_all_algo_test_data_csv()
     """画出6个算法在测试函数上优化的表现"""
-    index1 = 2
     for index in range(1, 21):
-        draw_all_algo_performance(dic1[index][1], dic1[index][2], dic1[index][3], popsize=dic1[index1][4], log=dic1[index1][5])
+        draw_all_algo_performance(dic1[index][1], dic1[index][2], dic1[index][3], popsize=dic1[index][4], log=dic1[index][5])
 
 """
 benchmark functions
