@@ -6,6 +6,14 @@ from scipy.stats import cauchy
 import matplotlib.pyplot as plt
 import pandas as pd
 
+"""
+JADE算法的仿真测试
+首先实现20个测试函数
+之后是带存档和不带存档的JADE算法实现函数
+之后是两种算法的单次测试可视化函数和多次测试写入数据文件函数的实现。
+由于测试时间过长多达十几个小时，程序运行时还可能出错，所以分几次运行完，有的测试函数测试了20次，某些耗时短的函数测试了50次。
+"""
+
 
 # [-100, 100] * 30
 def fun_1(x):
@@ -513,7 +521,6 @@ dic1 = {
     19: {1: fun_shekel7, 2: [(0, 10)] * 4, 3: 200},
     20: {1: fun_shekel10, 2: [(0, 10)] * 4, 3: 200}
 }
-
 
 if __name__ == '__main__':
     for test_index in range(16, 17):

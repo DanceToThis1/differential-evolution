@@ -5,8 +5,16 @@ import random
 from scipy.stats import cauchy
 import pandas as pd
 import os
+
 path1 = os.path.abspath('.')
 path2 = os.path.abspath('..')
+
+"""
+jade函数,实现JADE算法
+输入为待优化函数和相应的维度，每个维度的取值范围。
+输出为每次迭代中最优向量和最优向量对应的最优解。
+此函数在all_algo_test.py中被调用。
+"""
 
 
 def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
@@ -84,8 +92,10 @@ def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
 
 
 """
-jade_test
+jade_test函数
 参数随迭代次数的变化情况
+使用时还需要改算法的返回值，注释掉现在的，使用被注释的那条。
+这个函数画ppt中的图用的，在此程序中没有被调用。
 """
 
 
@@ -102,6 +112,14 @@ def jade_test(fun, bounds, popsize=100, its=1000):
     plt.legend()
     plt.show()
     pass
+
+
+"""
+jade_test_50函数
+输入为评价函数和与之对应的变量范围和最大迭代次数
+对函数进行50次优化，把每次得到的优化结果记录进csv文件中。
+这个函数在all_algo_test.py中被调用。
+"""
 
 
 def jade_test_50(fun, bounds, its):
