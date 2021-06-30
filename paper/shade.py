@@ -113,11 +113,8 @@ def shade(fobj, bounds, popsize=20, its=1000, h=100):
 
 
 def shade_test(fun, bounds, popsize=100, its=3000, log=0):
-    start = datetime.datetime.now()
     it = list(shade(fun, bounds, popsize=popsize, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, f = zip(*it)
     plt.plot(f, label='shade')
     if log == 1:
@@ -128,11 +125,8 @@ def shade_test(fun, bounds, popsize=100, its=3000, log=0):
 
 
 def shade_test_1(fun, bounds, popsize=100, its=1000):
-    start = datetime.datetime.now()
     it = list(shade(fun, bounds, popsize=popsize, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, mut, cr, f = zip(*it)
     plt.plot(mut, label='F')
     plt.plot(cr, label='CR')

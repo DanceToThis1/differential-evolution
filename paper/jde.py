@@ -1,10 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import datetime
 import pandas as pd
 import os
+
 path1 = os.path.abspath('.')
 path2 = os.path.abspath('..')
+
+"""
+在基本算法基础上改进参数选择策略。
+"""
 
 
 def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=100, its=1000):
@@ -41,11 +45,8 @@ def jde(fobj, bounds, mut=0.9, cr=0.1, popsize=100, its=1000):
 
 
 def jde_test(fun, bounds, mut=0.9, cr=0.1, its=3000, log=0):
-    start = datetime.datetime.now()
     it = list(jde(fun, bounds, mut=mut, cr=cr, popsize=100, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, f = zip(*it)
     plt.plot(f, label='jde')
     if log == 1:

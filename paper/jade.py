@@ -1,4 +1,3 @@
-import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 import random
@@ -48,14 +47,14 @@ def jade(fobj, bounds, popsize=100, its=1000, c=0.1):
             idx_x_r2 = random.randint(0, len(population) + len(a) - 3)
             if idx_x_r2 >= (len(population) - 2):
                 x_r2 = a[idx_x_r2 - len(population) + 2]
-            mut = cauchy.rvs(loc=mean_mut, scale=0.1)
+            mut = cauchy.rvs(loc=mean_mut, scale=0.1)  # 柯西分布生成随机数
             while mut < 0 or mut > 1:
                 if mut < 0:
                     mut = cauchy.rvs(loc=mean_mut, scale=0.1)
                 else:
                     mut = 1
             mutant = population[j] + mut * (x_best_p - population[j]) + mut * (x_r1 - x_r2)
-            for mutant_i in range(len(mutant)):
+            for mutant_i in range(len(mutant)):  # 变异向量越界处理
                 if mutant[mutant_i] < min_b[mutant_i]:
                     mutant[mutant_i] = (population[j][mutant_i] + min_b[mutant_i]) / 2
                     pass
@@ -100,11 +99,8 @@ jade_test函数
 
 
 def jade_test(fun, bounds, popsize=100, its=1000):
-    start = datetime.datetime.now()
     it = list(jade(fun, bounds, popsize=popsize, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, mut, cr, f = zip(*it)
     plt.plot(mut, label='F')
     plt.plot(cr, label='CR')

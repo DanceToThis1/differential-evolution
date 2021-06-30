@@ -2,14 +2,15 @@ import numpy as np
 import pandas as pd
 import random
 import statistics
-import datetime
 import matplotlib.pyplot as plt
 import os
 path1 = os.path.abspath('.')
 path2 = os.path.abspath('..')
 
 """
-sade
+sade算法，在某些文献中提到该算法性能不如JADE算法。
+使用四种策略的策略池，根据前几代的参数表现确定最新参数设计。
+分为学习阶段和迭代阶段。
 文献中cr存储LP代，之前数据删除。目前还没实现，cr列表中存储的是所有迭代中的数据。
 要实现的话要将每次迭代生成的cr值分开存储，记录是那一代生成的才行。
 lp设置为5，不知道是不是合适。
@@ -158,29 +159,9 @@ def current_to_rand_1(a, b, c, popj, mut, min_b, max_b):
     return trial
 
 
-def rastrigin_sade_test_20(fun, bounds):
-    result = []
-    for num in range(20):
-        it = list(sade(fun, bounds, popsize=100, its=3000))
-        result.append(it[-1][-1])
-        pass
-    mean_result = np.mean(result)
-    std_result = np.std(result)
-    success_num = 0
-    for i in result:
-        if np.fabs(i - 0) < 1e-5:
-            success_num += 1
-            pass
-        pass
-    return mean_result, std_result, success_num
-
-
 def sade_test(fun, bounds, its=3000, log=1):
-    start = datetime.datetime.now()
     it = list(sade(fun, bounds, popsize=100, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, f = zip(*it)
     plt.plot(f, label='sade')
     if log == 1:

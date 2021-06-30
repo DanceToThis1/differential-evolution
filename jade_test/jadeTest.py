@@ -1,4 +1,3 @@
-import datetime
 import math
 import numpy as np
 import random
@@ -10,8 +9,6 @@ import pandas as pd
 JADE算法的仿真测试
 首先实现20个测试函数
 之后是带存档和不带存档的JADE算法实现函数
-之后是两种算法的单次测试可视化函数和多次测试写入数据文件函数的实现。
-由于测试时间过长多达十几个小时，程序运行时还可能出错，所以分几次运行完，有的测试函数测试了20次，某些耗时短的函数测试了50次。
 """
 
 
@@ -419,48 +416,11 @@ def jade_without_a(fobj, bounds, popsize=100, its=1000, c=0.1):
     pass
 
 
-def jade_a_test(fun, bounds, its=1000, log=1):
-    start = datetime.datetime.now()
+def jade_test(fun, bounds, its=1000, log=1):
     it = list(jade_a(fun, bounds, popsize=100, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, f = zip(*it)
     plt.plot(f, label='jade')
-    if log == 1:
-        plt.yscale('log')
-    plt.legend()
-    plt.show()
-    pass
-
-
-def jade_without_a_test(fun, bounds, its=1000, log=1):
-    start = datetime.datetime.now()
-    it = list(jade_without_a(fun, bounds, popsize=100, its=its))
-    print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
-    x, f = zip(*it)
-    plt.plot(f, label='jade')
-    if log == 1:
-        plt.yscale('log')
-    plt.legend()
-    plt.show()
-    pass
-
-
-def test(fun, bounds, its=1000, log=1):
-    start = datetime.datetime.now()
-    it1 = list(jade_a(fun, bounds, popsize=100, its=its))
-    print(it1[-1])
-    it2 = list(jade_a(fun, bounds, popsize=100, its=its))
-    print(it2[-1])
-    end = datetime.datetime.now()
-    print(end - start)
-    x, f1 = zip(*it1)
-    x, f2 = zip(*it2)
-    plt.plot(f1, label='jade')
-    plt.plot(f2, label='jade_wo_a')
     if log == 1:
         plt.yscale('log')
     plt.legend()

@@ -1,9 +1,14 @@
 from paper.sade import *
 import matplotlib.pyplot as plt
-import datetime
 import os
+
 path1 = os.path.abspath('.')
 path2 = os.path.abspath('..')
+
+"""
+变异向量越界有新的处理方式还没加
+不确定迭代次数的设计是否有问题。
+"""
 
 
 def code(fobj, bounds, popsize=20, its=2000):
@@ -59,11 +64,8 @@ def code(fobj, bounds, popsize=20, its=2000):
 
 
 def code_test(fun, bounds, its=3000, log=0):
-    start = datetime.datetime.now()
     it = list(code(fun, bounds, popsize=100, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, f = zip(*it)
     plt.plot(f, label='code')
     if log == 1:
