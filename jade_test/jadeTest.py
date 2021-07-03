@@ -1,10 +1,15 @@
-import datetime
 import math
 import numpy as np
 import random
 from scipy.stats import cauchy
 import matplotlib.pyplot as plt
 import pandas as pd
+
+"""
+JADE算法的仿真测试
+首先实现20个测试函数
+之后是带存档和不带存档的JADE算法实现函数
+"""
 
 
 # [-100, 100] * 30
@@ -411,48 +416,11 @@ def jade_without_a(fobj, bounds, popsize=100, its=1000, c=0.1):
     pass
 
 
-def jade_a_test(fun, bounds, its=1000, log=1):
-    start = datetime.datetime.now()
+def jade_test(fun, bounds, its=1000, log=1):
     it = list(jade_a(fun, bounds, popsize=100, its=its))
     print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
     x, f = zip(*it)
     plt.plot(f, label='jade')
-    if log == 1:
-        plt.yscale('log')
-    plt.legend()
-    plt.show()
-    pass
-
-
-def jade_without_a_test(fun, bounds, its=1000, log=1):
-    start = datetime.datetime.now()
-    it = list(jade_without_a(fun, bounds, popsize=100, its=its))
-    print(it[-1])
-    end = datetime.datetime.now()
-    print(end - start)
-    x, f = zip(*it)
-    plt.plot(f, label='jade')
-    if log == 1:
-        plt.yscale('log')
-    plt.legend()
-    plt.show()
-    pass
-
-
-def test(fun, bounds, its=1000, log=1):
-    start = datetime.datetime.now()
-    it1 = list(jade_a(fun, bounds, popsize=100, its=its))
-    print(it1[-1])
-    it2 = list(jade_a(fun, bounds, popsize=100, its=its))
-    print(it2[-1])
-    end = datetime.datetime.now()
-    print(end - start)
-    x, f1 = zip(*it1)
-    x, f2 = zip(*it2)
-    plt.plot(f1, label='jade')
-    plt.plot(f2, label='jade_wo_a')
     if log == 1:
         plt.yscale('log')
     plt.legend()
@@ -513,7 +481,6 @@ dic1 = {
     19: {1: fun_shekel7, 2: [(0, 10)] * 4, 3: 200},
     20: {1: fun_shekel10, 2: [(0, 10)] * 4, 3: 200}
 }
-
 
 if __name__ == '__main__':
     for test_index in range(16, 17):
