@@ -1,4 +1,5 @@
 # differential-evolution 差分进化算法
+更新：正在重写：https://github.com/DanceToThis1/differential_evolution
 基于基本DE实现改进算法JDE、SaDE、JADE、SHADE、CoDE。在20个benchmark函数上进行测试。
 >基本DE实现参考自：https://pablormier.github.io/2017/09/05/a-tutorial-on-differential-evolution-with-python/
 
